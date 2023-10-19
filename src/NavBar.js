@@ -1,33 +1,31 @@
 import React from "react";
-// import "./NavBar.css";
 import { NavLink } from "react-router-dom";
 import { Navbar, Nav, NavItem } from "reactstrap";
-import "./Navbar.css";
+import "./NavBar.css";
 
 function NavBar() {
   return (
-    <div>
+    <div> 
       <Navbar expand="md">
         <NavLink exact to="/" className="navbar-brand">
-          Jobly
         </NavLink>
-        <Nav className="ml-auto" navbar>
-          <NavItem>
+        <Nav className="ml-auto" navbar >
+          <NavItem className="Navbar-Jobly">
             <NavLink to="/">Jobly</NavLink>
           </NavItem>
-          <NavItem>
+          <NavItem className="Navbar-Companies">
             <NavLink to="/companies">Companies</NavLink>
           </NavItem>
-          <NavItem>
+          <NavItem className="Navbar-Jobs">
             <NavLink to="/jobs">Jobs</NavLink>
           </NavItem>
-          <NavItem>
+          <NavItem className="Navbar-Jobs">
             <NavLink to="/profile">Profile</NavLink>
           </NavItem>
-          <NavItem>
+          <NavItem className="Navbar-Logout">
             <NavLink to="/logout">Log out</NavLink>
             {/* todo: insert name into logout */}
-          </NavItem>
+            </NavItem>
         </Nav>
       </Navbar>
     </div>

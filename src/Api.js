@@ -69,20 +69,24 @@ class JoblyApi {
     return res.companies;
   }
 
-  /** Get details on a job by handle.  */
-  static async getJob(handle) {
-    let res = await this.request(`jobs/${handle}`);
-    return res.job;
-  }
+  // /** Get details on a job by handle.  */
+  // static async getJob(handle) {
+  //   let res = await this.request(`jobs/${handle}`);
+  //   return res.job;
+  // }
 
-  static async getJobs() {
-    let res = await this.request(`jobs`);
-    return res.jobs;
-  }
+  // static async getJobs() {
+  //   let res = await this.request(`jobs`);
+  //   return res.jobs;
+  // }
 
-  static async addJob(job) {
-    const result = await this
-  }
+  // static async addCompany(job) {
+  //   const result = await this.create('')
+  // }
+
+  // static async addJob(job) {
+  //   const result = await this.create('')
+  // }
 
   // obviously, you'll add a lot here ...
 }

@@ -12,10 +12,10 @@ import ProfileForm from "./ProfileForm"
 function Routes() {
     const [isLoading, setIsLoading] = useState(true);
     const [companies, setCompanies] = useState([]);
-    const [jobs, setJobs] = useState([]);
-  
-    
-      /** API get request for companies */
+    // const [jobs, setJobs] = useState([]);
+
+
+    //   /** API get request for companies */
   
     useEffect(() => {
       async function getCompanies() {
@@ -27,15 +27,15 @@ function Routes() {
       getCompanies();
     }, []);
 
-    //   /** API get request for jobs */
-    useEffect(() => {
-      async function getJobs() {
-        let jobs = await JoblyApi.getJobs();
-        setJobs(jobs);
-        // setIsLoading(false);
-      }
-      getJobs();
-    }, []);
+    // //   /** API get request for jobs */
+    // useEffect(() => {
+    //   async function getJobs() {
+    //     let jobs = await JoblyApi.getJobs();
+    //     setJobs(jobs);
+    //     // setIsLoading(false);
+    //   }
+    //   getJobs();
+    // }, []);
   
  
   
@@ -74,10 +74,12 @@ return (
       <Home  />
     </Route>
     <Route exact path="/companies">
-      <InfoPage companies={companies} />
+    <InfoPage />
+      {/* <InfoPage companies={companies} /> */}
     </Route>
     <Route exact path="/jobs">
-      <InfoPage  jobs={jobs}/>
+    <InfoPage  />
+      {/* <InfoPage  jobs={jobs}/> */}
     </Route>
     <Route exact path="/login">
         <LoginForm  />
