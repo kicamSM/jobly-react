@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
 import Home from "./Home";
-import API from "./Api";
+import JoblyApi from "./Api";
 import { Route, Switch } from "react-router-dom";
 import InfoPage from "./InfoPage"
 import NotFound from "./404";
@@ -11,53 +11,55 @@ import ProfileForm from "./ProfileForm"
 
 function Routes() {
     const [isLoading, setIsLoading] = useState(true);
-    // const [snacks, setSnacks] = useState([]);
-    // const [drinks, setDrinks] = useState([]);
+    const [companies, setCompanies] = useState([]);
+    const [jobs, setJobs] = useState([]);
   
     
-      /** API get request for snacks */
+      /** API get request for companies */
   
-    // useEffect(() => {
-    //   async function getSnacks() {
-    //     let snacks = await SnackOrBoozeApi.getSnacks();
-    //     console.log('snacks in Routes', snacks)
-    //     setSnacks(snacks);
-    //     setIsLoading(false);
-    //   }
-    //   getSnacks();
-    // }, []);
+    useEffect(() => {
+      async function getCompanies() {
+        let companies = await JoblyApi.getCompany();
+        console.log('companies in Routes', companies)
+        setCompanies(companies);
+        // setIsLoading(false);
+      }
+      getCompanies();
+    }, []);
 
-    //   /** API get request for drinks */
-    // useEffect(() => {
-    //   async function getDrinks() {
-    //     let drinks = await SnackOrBoozeApi.getDrinks();
-    //     setDrinks(drinks);
-    //     setIsLoading(false);
-    //   }
-    //   getDrinks();
-    // }, []);
+    //   /** API get request for jobs */
+    useEffect(() => {
+      async function getJobs() {
+        let jobs = await JoblyApi.getJobs();
+        setJobs(jobs);
+        // setIsLoading(false);
+      }
+      getJobs();
+    }, []);
   
-    //   /** Add new drink to drinks. */
-    // const addDrink = drink => {
-    //     let newDrink = { ...drink};
-    //     setDrinks(drinks => [...drinks, newDrink]);
-    //   };
+ 
   
-    //     /** Add new snacks to snack. */
-    // const addSnack = snack => {
-    //   let newSnack = { ...snack };
-    //   setSnacks(snacks => [...snacks, newSnack]);
+    //     /** Add new company to compnaies. */
+    // const addCompany = company => {
+    //   let newCompany = { ...company };
+    //   setCompanies(companies => [...companies, newCompany]);
    
     // };
 
-    //  /**Post new snack to API. */
-    // async function addSnacks(snack) {
-    //   await SnackOrBoozeApi.addSnacks(snack)
+       //   /** Add new job to jobs. */
+    // const addJob = job => {
+    //     let newJob = { ...job};
+    //     setJobs(jobs => [...jobs, newJob]);
+    //   };
+
+    //  /**Post new company to API. */
+    // async function addCompanies(company) {
+    //   await JoblyApi.addCompanies(company)
     // }
 
-    //   /**Post new drink to API. */
-    // async function addDrinks(drink) {
-    //   await SnackOrBoozeApi.addDrinks(drink)
+    //   /**Post new job to API. */
+    // async function addJobs(job) {
+    //   await JoblyApi.addJobs(job)
     // }
 
 
@@ -72,10 +74,10 @@ return (
       <Home  />
     </Route>
     <Route exact path="/companies">
-      <InfoPage  />
+      <InfoPage companies={companies} />
     </Route>
     <Route exact path="/jobs">
-      <InfoPage  />
+      <InfoPage  jobs={jobs}/>
     </Route>
     <Route exact path="/login">
         <LoginForm  />
@@ -84,7 +86,8 @@ return (
       <ProfileForm />
     </Route>
     <Route path="/companies/:name">
-        {/* will display detais of company */}
+        {/* will display details of company */}
+      
       <InfoPage />
     </Route>
     <Route path="/profile">

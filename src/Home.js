@@ -1,6 +1,6 @@
 import React from "react";
 import { Card, CardBody, CardTitle } from "reactstrap";
-// import './Home.css'
+import './Home.css'
 
 /**
  * Display home page and count of snacks and drinks
@@ -13,11 +13,12 @@ function Home() {
         <Card>
           <CardTitle>
               <div className="font-weight-bold Home-div">
-                Welcome to Jobly! 
+                <h1>Jobly</h1>
               </div>
           </CardTitle>
           <CardBody className="text-center">
-          
+            <div>All the jobs in one, convenient plae.</div>
+            <h2>Welcome Back</h2>
           </CardBody>
         </Card>
       </section>
