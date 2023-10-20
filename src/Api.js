@@ -70,16 +70,16 @@ class JoblyApi {
     return res.companies;
   }
 
-  // /** Get details on a job by handle.  */
-  // static async getJob(handle) {
-  //   let res = await this.request(`jobs/${handle}`);
-  //   return res.job;
-  // }
+  /** Get details on a job by handle.  */
+  static async getJob(handle) {
+    let res = await this.request(`jobs/${handle}`);
+    return res.job;
+  }
 
-  // static async getJobs() {
-  //   let res = await this.request(`jobs`);
-  //   return res.jobs;
-  // }
+  static async getJobs(title) {
+    let res = await this.request(`jobs`, {title});
+    return res.jobs;
+  }
 
   // static async addCompany(job) {
   //   const result = await this.create('')

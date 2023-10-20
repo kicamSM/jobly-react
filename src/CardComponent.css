@@ -1,21 +1,22 @@
-.CompanyCard {
+.CardComponent {
     border: solid lightgray 1px;
     margin: 20px;
     background-color: white;
+    padding-top: 20px;
 }
 
-.CompanyCard-Title {
+.CardComponent-Title {
     font-size: large;
     font-weight: bold;
     /* font-family: 'Courier New', Courier, monospace; */
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
-.CompanyCard-Text {
+.CardComponent-Text {
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
-.CompanyCard-Link {
+.CardComponent-Link {
     text-decoration: none;
     color: black;
 }

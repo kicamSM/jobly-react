@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import JoblyApi from "../Api";
-import CompanyCard from "./CompanyCard";
+// import CompanyCard from "./CompanyCard";
+import CardComponent from "../CardComponent";
 import SearchBar from "../SearchBar";
 
 
@@ -33,11 +34,20 @@ function CompanyList() {
     // });
 
     const renderCards = () => {
+      // return (
+      //   <div className="CompanyList">
+      //       <ul>
+      //           {companies.map(company => (
+      //             <CompanyCard company={company} />
+      //           ))}
+      //       </ul>
+      //     </div>
+      //   );
       return (
         <div className="CompanyList">
             <ul>
                 {companies.map(company => (
-                  <CompanyCard company={company} />
+                  <CardComponent company={company} />
                 ))}
             </ul>
           </div>

@@ -9,6 +9,7 @@ import LoginForm from "./LoginForm";
 import ProfileForm from "./ProfileForm"
 import CompanyList from "./companies/CompanyList";
 import CompanyDetail from "./companies/CompanyDetail";
+import JobList from "./jobs/JobList";
 
 
 function Routes() {
@@ -80,7 +81,7 @@ return (
       {/* <InfoPage companies={companies} /> */}
     </Route>
     <Route exact path="/jobs">
-    <InfoPage  />
+    <JobList  />
       {/* <InfoPage  jobs={jobs}/> */}
     </Route>
     <Route exact path="/login">
