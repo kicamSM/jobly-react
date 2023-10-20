@@ -7,23 +7,22 @@ import React, {useState, useRef} from 'react'
  *
  */
 
-function SearchBar({getCompanies}) {
+function SearchBar({getCompanies, getJobs}) {
     // console.log("search:", search)
     const [searchInput, setSearchInput] = useState("");
     const INITIAL_STATE = { searchInput: "" };
     const [formData, setFormData] = useState(INITIAL_STATE);
+
+    let getData = getCompanies !== undefined ? getCompanies : getJobs; 
+    console.log("getData:", getData)
 
   /** Send {searchInput} to backend
        & clear form. */
   
     const handleSubmit = evt => {
       evt.preventDefault();
-      console.log("handle submit is running")
-      console.log('formData:', formData.searchInput)
-      console.log('searchInput:', searchInput)
-      getCompanies(formData.searchInput)
+      getData(formData.searchInput)
       setFormData(INITIAL_STATE);
-      // redirect()
     };
 
     const handleChange = evt => {
