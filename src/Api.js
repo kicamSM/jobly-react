@@ -60,12 +60,13 @@ class JoblyApi {
 //   ! will use this later to add other handles as well.
 
   static async getCompany(handle) {
+    console.log("getCompany is running in API")
     let res = await this.request(`companies/${handle}`);
     return res.company;
   }
 
-  static async getCompanies() {
-    let res = await this.request(`companies`);
+  static async getCompanies(name) {
+    let res = await this.request(`companies`, { name });
     return res.companies;
   }
 

@@ -7,6 +7,8 @@ import InfoPage from "./InfoPage"
 import NotFound from "./404";
 import LoginForm from "./LoginForm";
 import ProfileForm from "./ProfileForm"
+import CompanyList from "./companies/CompanyList";
+import CompanyDetail from "./companies/CompanyDetail";
 
 
 function Routes() {
@@ -17,15 +19,15 @@ function Routes() {
 
     //   /** API get request for companies */
   
-    useEffect(() => {
-      async function getCompanies() {
-        let companies = await JoblyApi.getCompany();
-        console.log('companies in Routes', companies)
-        setCompanies(companies);
-        // setIsLoading(false);
-      }
-      getCompanies();
-    }, []);
+    // useEffect(() => {
+    //   async function getCompanies() {
+    //     let companies = await JoblyApi.getCompanies();
+    //     console.log('companies in Routes', companies)
+    //     setCompanies(companies);
+    //     // setIsLoading(false);
+    //   }
+    //   getCompanies();
+    // }, []);
 
     // //   /** API get request for jobs */
     // useEffect(() => {
@@ -74,7 +76,7 @@ return (
       <Home  />
     </Route>
     <Route exact path="/companies">
-    <InfoPage />
+    <CompanyList />
       {/* <InfoPage companies={companies} /> */}
     </Route>
     <Route exact path="/jobs">
@@ -90,7 +92,7 @@ return (
     <Route path="/companies/:name">
         {/* will display details of company */}
       
-      <InfoPage />
+      <CompanyDetail />
     </Route>
     <Route path="/profile">
       <ProfileForm  />
