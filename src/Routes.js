@@ -1,34 +1,36 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
-import Home from "./Home";
+import Home from "./home/Home";
 import JoblyApi from "./Api";
 import { Route, Switch } from "react-router-dom";
 import InfoPage from "./InfoPage"
 import NotFound from "./404";
-import LoginForm from "./LoginForm";
-import ProfileForm from "./ProfileForm"
+import LoginForm from "./forms/LoginForm";
+import ProfileForm from "./forms/ProfileForm"
 import CompanyList from "./companies/CompanyList";
 import CompanyDetail from "./companies/CompanyDetail";
 import JobList from "./jobs/JobList";
 
 
-function Routes() {
+function Routes({login, signup}) {
     const [isLoading, setIsLoading] = useState(true);
-    const [companies, setCompanies] = useState([]);
+   
     // const [jobs, setJobs] = useState([]);
 
 
     //   /** API get request for companies */
   
     // useEffect(() => {
-    //   async function getCompanies() {
-    //     let companies = await JoblyApi.getCompanies();
-    //     console.log('companies in Routes', companies)
-    //     setCompanies(companies);
+    //   async function getUser() {
+    //     let user = await JoblyApi.getUser();
+    //     console.log('user in Routes', user)
+    //     setUser(user);
     //     // setIsLoading(false);
     //   }
-    //   getCompanies();
+    //   getUser();
     // }, []);
+
+    // console.log("user:", user)
 
     // //   /** API get request for jobs */
     // useEffect(() => {
@@ -85,10 +87,11 @@ return (
       {/* <InfoPage  jobs={jobs}/> */}
     </Route>
     <Route exact path="/login">
-        <LoginForm  />
+        <LoginForm login={login}/>
     </Route>
     <Route exact path="/signup">
-      <ProfileForm />
+      <ProfileForm  signup={signup}/>
+      {/* if token can display user data in form */}
     </Route>
     <Route path="/companies/:name">
         {/* will display details of company */}

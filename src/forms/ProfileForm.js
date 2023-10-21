@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-// import './LoginForm.css'
+// import './ProfileForm.css'
 import {
     Card,
     CardBody,
@@ -14,31 +14,32 @@ import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
  *
  */
 
-const LoginForm = () => {
+const ProfileForm = ({signup}) => {
     
 //   const history = useHistory()
 //   let name = snacks !== undefined ? "Snack" : "Drink";
 //   let addItem = snacks !== undefined  ? addSnack : addDrink
 //   let addItems = snacks !== undefined ? addSnacks: addDrinks
 
-//   /** Redirect to snacks or drinks page after submitting form */
+  /** Redirect to snacks or drinks page after submitting form */
 
 //   const redirect = () => {
 //     let url = name.toLocaleLowerCase() + 's';
 //     history.push(`/${url}`);
 //   };
  
-//   /** Set initial state and the then set the formdata as initial state. */
+  /** Set initial state and the then set the formdata as initial state. */
 
-  const INITIAL_STATE = { username: "", password: "" };
+  const INITIAL_STATE = { username: "", firstName: "", lastName: "", Email: "" };
   const [formData, setFormData] = useState(INITIAL_STATE);
 
-//   /** Send {id, name, drescription, recipe, serve} to parent
-//    *    & clear form. */
+  /** Send {id, name, drescription, recipe, serve} to parent
+   *    & clear form. */
 
   const handleSubmit = evt => {
     evt.preventDefault();
-    console.log('handle submit is running')
+    console.log('handleSubmit is running')
+
     // delete formData[''];
     // formData['id'] = formData.name.toLowerCase()
     // formData['name'] = formData.name.charAt(0).toLocaleUpperCase() + formData.name.slice(1)
@@ -69,7 +70,7 @@ const LoginForm = () => {
     <section className="col-md-4">
         <Card>
             <CardTitle className="ItemForm-CardTitle">
-                <div>Log In</div>
+                <div>Profile</div>
             </CardTitle>
             <CardBody>
                 <form className="ItemForm" onSubmit={handleSubmit}>
@@ -86,19 +87,45 @@ const LoginForm = () => {
                     </div>
 
                     <div>
-                        <label htmlFor="password">Password: </label>
+                        <label htmlFor="firstName">First Name: </label>
                         <input
-                            type="password"
-                            id="password"
-                            name="password"
-                            value={formData.password}
+                            type="firstName"
+                            id="firstName"
+                            name="firstName"
+                            value={formData.firstName}
                             onChange={handleChange}
-                            placeholder="Password"
+                            placeholder="First Name"
                             required
                         />
                     </div>
 
-                    <button onClick={handleChange}>Submit</button>
+                    <div>
+                        <label htmlFor="lasteName">Last Name: </label>
+                        <input
+                            type="lastName"
+                            id="lasteName"
+                            name="lastName"
+                            value={formData.lastName}
+                            onChange={handleChange}
+                            placeholder="lastName"
+                            required
+                        />
+                    </div>
+
+                    <div>
+                        <label htmlFor="email">Email: </label>
+                        <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            value={formData.email}
+                            onChange={handleChange}
+                            placeholder="Email"
+                            required
+                        />
+                    </div>
+
+                    <button onClick={handleChange}>Save Changes</button>
                 </form>
             </CardBody>
         </Card>
@@ -106,4 +133,4 @@ const LoginForm = () => {
   );
 };
 
-export default LoginForm;
+export default ProfileForm;

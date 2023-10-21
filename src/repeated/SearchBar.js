@@ -1,5 +1,5 @@
 import { Card, CardBody, CardTitle } from "reactstrap";
-import './Home.css'
+import './SearchBar.css'
 import React, {useState, useRef} from 'react'
 
 /**

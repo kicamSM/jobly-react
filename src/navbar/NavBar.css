@@ -75,3 +75,25 @@ nav {
     flex-direction: row;
     justify-content: center;
   }
+
+  .Navbar-Logout {
+    background-color: black;
+  }
+
+  
+  /* .Navbar-button {
+    background-color: black;
+    color: white;
+    
+  } */
+
+  .Navbar-button {
+    color: inherit;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .Navbar-button:hover {
+    background-color: #ccc;
+  }

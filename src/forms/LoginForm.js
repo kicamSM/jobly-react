@@ -1,11 +1,12 @@
 import React, { useState } from "react";
-// import './ProfileForm.css'
+// import './LoginForm.css'
 import {
     Card,
     CardBody,
     CardTitle
   } from "reactstrap";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import useLocalStorage from "../hooks/useLocalStorage";
 
 /** Form for creating a snack or drink item to add to snacks or drinks.
  *
@@ -14,41 +15,68 @@ import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
  *
  */
 
-const ProfileForm = () => {
+const LoginForm = ({login}) => {
     
 //   const history = useHistory()
 //   let name = snacks !== undefined ? "Snack" : "Drink";
 //   let addItem = snacks !== undefined  ? addSnack : addDrink
 //   let addItems = snacks !== undefined ? addSnacks: addDrinks
 
-  /** Redirect to snacks or drinks page after submitting form */
+//   /** Redirect to snacks or drinks page after submitting form */
 
 //   const redirect = () => {
 //     let url = name.toLocaleLowerCase() + 's';
 //     history.push(`/${url}`);
 //   };
  
-  /** Set initial state and the then set the formdata as initial state. */
+//   /** Set initial state and the then set the formdata as initial state. */
 
-  const INITIAL_STATE = { username: "", firstName: "", lastName: "", Email: "" };
-  const [formData, setFormData] = useState(INITIAL_STATE);
+  const INITIAL_STATE = { username: "", password: "" };
 
-  /** Send {id, name, drescription, recipe, serve} to parent
-   *    & clear form. */
+  // *This will be my formData when finished 
+  // const [formData, setFormData] = useState(INITIAL_STATE);
+
+  // *Form data set for testing application
+  const [formData, setFormData] = useState({
+    username: 'testuser',
+    password: 'password',
+  });
+
+  const history = useHistory()
+  const [token, setToken] = useLocalStorage();
+
+  // const GetTokenFromLocalStorage = () => {
+  
+  //   const getToken = () => {
+  //     const token = localStorage.getItem("token");
+  //     if (token) {
+  //       setToken(token);
+  //     } else {
+  //       setToken(null);
+  //     }
+  //   };
+  // }
+
+//   /** Send {id, name, drescription, recipe, serve} to parent
+//    *    & clear form. */
+
+console.log("history!!!!", history)
+  /** Redirect to home page after submitting form */
+
+  const redirect = () => {
+    if(token) {
+      history.push('/');
+    }
+  };
 
   const handleSubmit = evt => {
     evt.preventDefault();
-    console.log('handleSubmit is running')
-
-    // delete formData[''];
-    // formData['id'] = formData.name.toLowerCase()
-    // formData['name'] = formData.name.charAt(0).toLocaleUpperCase() + formData.name.slice(1)
-
     // addItem(formData);
     // addItems(formData)
-    
+    login(formData)
     setFormData(INITIAL_STATE);
-    // redirect()
+    
+    redirect()
   };
 
   /** Update local state w/curr state of input elem */
@@ -70,7 +98,7 @@ const ProfileForm = () => {
     <section className="col-md-4">
         <Card>
             <CardTitle className="ItemForm-CardTitle">
-                <div>Profile</div>
+                <div>Log In</div>
             </CardTitle>
             <CardBody>
                 <form className="ItemForm" onSubmit={handleSubmit}>
@@ -87,45 +115,19 @@ const ProfileForm = () => {
                     </div>
 
                     <div>
-                        <label htmlFor="firstName">First Name: </label>
+                        <label htmlFor="password">Password: </label>
                         <input
-                            type="firstName"
-                            id="firstName"
-                            name="firstName"
-                            value={formData.firstName}
+                            type="password"
+                            id="password"
+                            name="password"
+                            value={formData.password}
                             onChange={handleChange}
-                            placeholder="First Name"
+                            placeholder="Password"
                             required
                         />
                     </div>
 
-                    <div>
-                        <label htmlFor="lasteName">Last Name: </label>
-                        <input
-                            type="lastName"
-                            id="lasteName"
-                            name="lastName"
-                            value={formData.lastName}
-                            onChange={handleChange}
-                            placeholder="lastName"
-                            required
-                        />
-                    </div>
-
-                    <div>
-                        <label htmlFor="email">Email: </label>
-                        <input
-                            type="email"
-                            id="email"
-                            name="email"
-                            value={formData.email}
-                            onChange={handleChange}
-                            placeholder="Email"
-                            required
-                        />
-                    </div>
-
-                    <button onClick={handleChange}>Save Changes</button>
+                    <button >Submit</button>
                 </form>
             </CardBody>
         </Card>
@@ -133,4 +135,5 @@ const ProfileForm = () => {
   );
 };
 
-export default ProfileForm;
+
+export default LoginForm;

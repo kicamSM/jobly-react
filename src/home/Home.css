@@ -1,0 +1,20 @@
+body {
+    background-color: lightblue;
+}
+
+/* a {
+    background-color: blue;
+    color: white;
+    text-decoration: none;
+  } */
+
+
+.Home-Link {
+    background-color: #24a0ed;
+    color: white;
+    font-size: 20px;
+    padding: 5px;
+    border: gray solid 1px;
+    text-decoration: none;
+    border-radius: 5px;
+}
