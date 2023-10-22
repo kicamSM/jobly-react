@@ -14,12 +14,12 @@ export const TOKEN_STORAGE_ID = "jobly-token";
 function App() {
 
   const [user, setUser] = useState(null);
-  const [token, setToken] = useState([]);
-  // const [token, setToken] = useLocalStorage(TOKEN_STORAGE_ID);
+  // const [token, setToken] = useState([]);
+  const [token, setToken] = useLocalStorage(TOKEN_STORAGE_ID);
   // ! come back to this useLocalStorage
   const [applicationIds, setApplicationIds] = useState(new Set([]));
   const history = useHistory();
-  console.log("history!!!!:", history)
+  // console.log("history!!!!:", history)
 
 // useEffect(() => {
 //   const setTokenToLocalStorage = (token) => {
@@ -66,16 +66,22 @@ function App() {
     console.debug("App useEffect loadUserInfo", "token=", token);
 
     async function getUser() {
+      // console.log("App get user is running")
+      // console.log("token:", token)
       if (token) {
+        //   console.log("token:", token)
+        // console.log("GET USER IS RUNNNING ")
         try {
+          console.log("try is runnning")
           let { username } = jwt.decode(token);
           // put the token on the Api class so it can use it to call the API.
-          console.log("username:", username)
+          // console.log("username:", username)
           JoblyApi.token = token;
           let user = await JoblyApi.getUser(username);
-          console.log("user:", user)
-          console.log("user.firstName:", user.firstName)
+          // console.log("&&&&&&&&user:", user)
+          // console.log("user.firstName:", user.firstName)
           setUser(user);
+          // console.log("user in get user is there:", user)
           setApplicationIds(new Set(user.applications));
         } catch (err) {
           console.error("App loadUserInfo: problem loading", err);
@@ -95,8 +101,16 @@ function App() {
   }, [token]);
 
   async function signup(userData) {
-    let token = JoblyApi.signup(userData); 
+    // console.log("token:", token)
+    try {
+    // console.log("userData:", userData)
+    let token = await JoblyApi.signup(userData); 
     setToken(token);
+    return { success: true};
+    } catch (errors) {
+      console.log("signup failed", errors);
+      return {success: false, errors};
+    }
   }
 
   async function login(loginData) {
@@ -112,9 +126,11 @@ function App() {
 
   function logout() {
     // try {
+
       console.log("token in logout before setting token:", token)
       setToken(null);
       console.log("token in logout after setting token:", token)
+      setUser(null);
       // history.push('/login');
       // redirect()
       // return <Redirect to="/login" />;
@@ -138,7 +154,7 @@ function App() {
     }
   }
 
-console.log("user!!!!:", user)
+// console.log("user!!!!:", user)
 
   return (
     <div className="App">

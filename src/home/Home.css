@@ -7,7 +7,7 @@ body {
     display: flex;
     justify-content: center;
     margin: auto;
-    margin-top: 8em;
+    margin-top: 6em;
 }
 
 
@@ -16,7 +16,12 @@ body {
     color: white;
     font-size: 20px;
     padding: 5px;
+    margin: 10px;
     border: gray solid 1px;
     text-decoration: none;
     border-radius: 5px;
 }
+
+/* .Card-Text {
+    padding: 10px;
+} */

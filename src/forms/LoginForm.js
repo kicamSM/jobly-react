@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 // import './LoginForm.css'
 import {
     Card,
@@ -8,6 +8,7 @@ import {
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import useLocalStorage from "../hooks/useLocalStorage";
 import "./LoginForm.css"
+import UserContext from "../UserContext";
 
 /** Form for creating a snack or drink item to add to snacks or drinks.
  *
@@ -31,7 +32,7 @@ const LoginForm = ({login}) => {
 //   };
  
 //   /** Set initial state and the then set the formdata as initial state. */
-
+  const { user } = useContext(UserContext);
   const INITIAL_STATE = { username: "", password: "" };
 
   // *This will be my formData when finished 
@@ -68,24 +69,34 @@ const LoginForm = ({login}) => {
 //   /** Send {id, name, drescription, recipe, serve} to parent
 //    *    & clear form. */
 
-console.log("history!!!!", history)
+// console.log("history!!!!", history)
   /** Redirect to home page after submitting form */
 
-  const redirect = () => {
-    if(token) {
-      history.push('/');
-    }
-  };
+  // console.log("user in Loginform:", user)
+  // const redirect = () => {
+  //   console.log("token:", token)
+  //   console.log("user in login:", user)
+  //   if(token) {
+  //     history.push('/');
+  //   } else {
+  //     console.log("user does not exist in login form")
+  //   }
 
-  const handleSubmit = evt => {
+  // };
+
+  const  handleSubmit = async evt => {
     evt.preventDefault();
-    // addItem(formData);
-    // addItems(formData)
-    console.log("formData in login:", formData)
-    login(formData)
-    setFormData(INITIAL_STATE);
-    
-    redirect()
+  
+    // console.log("formData in login:", formData)
+    let result = await login(formData); 
+    // console.log("~!!!!!!!!!!!!!!1result:", result)
+    // console.log("~!!!!!!!!!!!!!!1result.success:", result.success)
+    if(result.success) {
+      console.log("result success is true")
+      history.push("/")
+      setFormData(INITIAL_STATE);
+    }
+    // redirect()
   };
 
   /** Update local state w/curr state of input elem */

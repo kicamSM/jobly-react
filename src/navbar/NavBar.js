@@ -5,13 +5,13 @@ import "./NavBar.css";
 import 'bootstrap/dist/css/bootstrap.css';
 
 function NavBar({logout, user}) {
-  console.log("user:", user)
+  // console.log("user:", user)
   // const { firstName } = user
   // console.log("firstName:", firstName)
 
   if(user) {
    const { firstName } = user
-    console.log("firstName:", firstName)
+    // console.log("firstName:", firstName)
   }
 
 

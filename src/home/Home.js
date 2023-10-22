@@ -22,17 +22,13 @@ function Home() {
       <section className="col-md-8 Home">
         <Card>
           <CardTitle>
-              <div className="font-weight-bold Home-div">
                 <h1>Jobly</h1>
-              </div>
           </CardTitle>
           <CardBody className="text-center">
-            <div>All the jobs in one, convenient place.</div>
+            <CardText><h4>All the jobs in one, convenient place.</h4></CardText>
             {user && <h2>Welcome Back, {user.firstName}!</h2>}
             { !user && ( <> <CardText>
               <Link className="Home-Link" to="/login">Login</Link>
-            </CardText>
-            <CardText>
               <Link className="Home-Link" to="/signup">Signup</Link>
             </CardText>
             </>)}

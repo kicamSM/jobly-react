@@ -8,11 +8,13 @@ import {
     FormGroup,
     Label, 
     Input,
-    Col
+    Button,
+    FormFeedback
   } from "reactstrap";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import UserContext from "../UserContext";
 import "./ProfileForm.css"
+import LoginForm from "./LoginForm";
 
 /** Form for adding a user or updating a logged in user.
  *
@@ -25,7 +27,8 @@ const ProfileForm = ({signup, update}) => {
 
   const { user } = useContext(UserContext);
   let INITIAL_STATE; 
-    
+  const history = useHistory();
+  // const [passwordValid, setPasswordValid] = useState(true);
 //   const history = useHistory()
 //   let name = snacks !== undefined ? "Snack" : "Drink";
 //   let addItem = snacks !== undefined  ? addSnack : addDrink
@@ -59,29 +62,45 @@ const ProfileForm = ({signup, update}) => {
     console.log("***user.email***:", user.email)
     INITIAL_STATE = { username: user.username, firstName: user.firstName, lastName: user.lastName, Email: user.email };
   } else {
-    INITIAL_STATE = { username: "", firstName: "", lastName: "", Email: "" };
+    INITIAL_STATE = { username: "", firstName: "", lastName: "", email: "" };
   }
   const [formData, setFormData] = useState(INITIAL_STATE);
 
   /** Send {id, name, drescription, recipe, serve} to parent
    *    & clear form. */
 
-  const handleSubmit = evt => {
+  const handleSubmit = async evt => {
     evt.preventDefault();   
     setFormData(INITIAL_STATE);
     if(user) {
       console.log("user in handle submit profile form:", user)
       const username = user.username;
       delete formData.username;
-      delete formData.Email; 
-      delete formData.password
-      console.log("user in profile form:", user)
-      console.log("formdata in profile form:", formData)
-      const passwordInput = document.querySelector('#my-password-input');
-      passwordInput.style.display = 'block';
+      delete formData.email; 
+    
+      // console.log("user in profile form:", user)
+      // console.log("formdata in profile form:", formData)
+      // const passwordInput = document.querySelector('#my-password-input');
+      // passwordInput.style.display = 'block'
+      if(formData.password === user.password) {
+        delete formData.password;
+        update(formData, username);
+      } else {
+        alert('Password is incorrect:')
+      }
+   
 
-      update(formData, username); 
+    }
+    if(!user) {
+      // console.log("no user will need to add singup")
+      // console.log("!!!!!!!!!!!!!!formData:", formData)
+      let result = await signup(formData);
+      console.log("!!!!!!!user:", user)
+      if(result.success) {
+        history.push("/")
+        // setFormData(INITIAL_STATE);
 
+      }
     }
 
   };
@@ -96,6 +115,10 @@ const ProfileForm = ({signup, update}) => {
       ...fData,
       [name]: value,
     }));
+
+    // if(name === "password") {
+    //   setPasswordValid(value === user.password);
+    // }
     
   };
 
@@ -105,40 +128,40 @@ const ProfileForm = ({signup, update}) => {
     <section className="col-md-4 ProfileForm">
         <Card>
             <CardTitle className="ItemForm-CardTitle">
-            { !user && ( <div>Create a Profile</div> )}
-            { user && (<div>{user.username}'s Profile</div>)}
+            { !user && ( <h1>Create a Profile</h1> )}
+            { user && (<h1>{user.username}'s Profile</h1>)}
             </CardTitle>
             <CardBody>
-                <form className="ItemForm" onSubmit={handleSubmit}>
-                 
-                    <div className="ItemForm-CardBody-div">
-                        <label htmlFor="username">Username: </label>
+                <Form className="ItemForm" onSubmit={handleSubmit}>
+                    {/* <div className="ItemForm-CardBody-div"> */}
+                        <Label htmlFor="username" sm={10}>Username: </Label>
                         { user && (
-                        <input
+                        <Input
                             id="username"
                             name="username"
                             value={formData.username}
                             readOnly
-                            style={{backgroundColor: "gray"}}
+                            style={{backgroundColor: "lightGray", color: "black"}}
                         />
                   
                     )}
+                  
                         { !user && (
-                        <input
+                        <Input
                             id="username"
                             name="username"
-                            value={formData.username}
+                            defaultValue={formData.username}
                             onChange={handleChange}
                             placeholder="Username"
                             required
                         />
                   
                     )}
-                      </div>
 
-                    <div>
-                        <label htmlFor="firstName">First Name: </label>
-                        <input
+                  
+                        <Label htmlFor="firstName">First Name: </Label>
+                       
+                        <Input
                             type="firstName"
                             id="firstName"
                             name="firstName"
@@ -147,39 +170,35 @@ const ProfileForm = ({signup, update}) => {
                             placeholder="First Name"
                             required
                         />
-                    </div>
-
-                    <div>
-                        <label htmlFor="lastName">Last Name: </label>
-                        <input
+                        
+           
+                        <Label htmlFor="lastName">Last Name: </Label>
+                        <Input
                             type="lastName"
-                            id="lasteName"
+                            id="lastName"
                             name="lastName"
                             value={formData.lastName}
                             onChange={handleChange}
                             placeholder="Last Name"
                             required
                         />
-                    </div>
-
-                    <div>
-                        <label htmlFor="email">Email: </label>
-                        <input
+                {/* NOTE ISSUE WITH INPUT FOR EMAIL ONLY NOT REACT ISSUE SEEMS TO BE EMAIL ISSUE */}
+                         <Label htmlFor="email">Email: </Label>
+                        <Input
                             type="email"
                             id="email"
                             name="email"
-                            value={formData.Email}
+                            defaultValue={formData.email}
                             onChange={handleChange}
                             placeholder="Email"
                             required
                         />
-                    </div>
-
-                    <div className="form-group">
-                        { !user && ( <label>Password:</label> )}
+                         {/* <FormFeedback invalid>Password is incorrect.</FormFeedback> */}
+                        
+                        { !user && ( <Label>Password:</Label> )}
                         {/* { user && ( <label style={{display: "none"}}>Confirm Password:</label> )} */}
-                        { user && ( <label>Confirm Password:</label> )}
-                        <input
+                        { user && ( <Label>Confirm Password:</Label> )}
+                        <Input
                             type="password"
                             name="password"
                             className="form-control"
@@ -189,12 +208,8 @@ const ProfileForm = ({signup, update}) => {
                             // style={{display: "none"}}
                             id="passwordInput"
                         />
-                      </div>
-
-                    {/* <button onClick={handleChange}>Save Changes</button> */}
-                    
-                    <button >Save Changes</button>
-                </form>
+                    <Button >Save Changes</Button>
+                </Form>
             </CardBody>
         </Card>
     </section>
