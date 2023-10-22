@@ -1,15 +1,22 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import JoblyApi from "../Api";
 // import CompanyCard from "./CompanyCard";
 import CardComponent from "../repeated/CardComponent";
 import SearchBar from "../repeated/SearchBar";
+import UserContext from "../UserContext";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 
 function CompanyList() {
     const [isLoading, setIsLoading] = useState(true);
     const [companies, setCompanies] = useState([]);
+    const { user } = useContext(UserContext);
+    const history = useHistory();
     // const [jobs, setJobs] = useState([]);
 
+    if(!user) {
+      history.push("/")
+    }
 
   //   /** API get request for companies */
     async function getCompanies(name) {

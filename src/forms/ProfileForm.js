@@ -9,7 +9,8 @@ import {
     Label, 
     Input,
     Button,
-    FormFeedback
+    FormFeedback,
+    InputGroup
   } from "reactstrap";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import UserContext from "../UserContext";
@@ -25,9 +26,11 @@ import LoginForm from "./LoginForm";
 
 const ProfileForm = ({signup, update}) => {
 
-  const { user } = useContext(UserContext);
+  const { user, setUser } = useContext(UserContext);
+  console.log("setUser!!!:", setUser)
   let INITIAL_STATE; 
   const history = useHistory();
+  const [ valid, setValid ] = useState(false)
   // const [passwordValid, setPasswordValid] = useState(true);
 //   const history = useHistory()
 //   let name = snacks !== undefined ? "Snack" : "Drink";
@@ -60,7 +63,7 @@ const ProfileForm = ({signup, update}) => {
   if(user) {
     console.log("***user***:", user)
     console.log("***user.email***:", user.email)
-    INITIAL_STATE = { username: user.username, firstName: user.firstName, lastName: user.lastName, Email: user.email };
+    INITIAL_STATE = { username: user.username, firstName: user.firstName, lastName: user.lastName, email: user.email };
   } else {
     INITIAL_STATE = { username: "", firstName: "", lastName: "", email: "" };
   }
@@ -75,19 +78,34 @@ const ProfileForm = ({signup, update}) => {
     if(user) {
       console.log("user in handle submit profile form:", user)
       const username = user.username;
+      const email = formData.email; 
+      const firstName = formData.firstName
+      const lastName = formData.lastName
+      console.log("lastName:", lastName)
+    
       delete formData.username;
       delete formData.email; 
-    
-      // console.log("user in profile form:", user)
-      // console.log("formdata in profile form:", formData)
-      // const passwordInput = document.querySelector('#my-password-input');
-      // passwordInput.style.display = 'block'
-      if(formData.password === user.password) {
-        delete formData.password;
+
         update(formData, username);
-      } else {
-        alert('Password is incorrect:')
-      }
+        console.log("formData:", formData)
+
+        console.log("lastName222:", lastName)
+        let profileData = {
+          email: email, 
+          username: username,
+          isAdmin: user.isAdmin,
+          firstName: firstName,
+          lastName: lastName
+        }
+        console.log("otherInfo:", profileData)
+        setUser(profileData)
+        console.log("USER!!!!!:", user)
+        setFormData(profileData);
+        // todo: this is working but you need to relook at it as I think you made it more complicated than needed. 
+      // } else {
+        // alert('Password is incorrect:')
+      // }
+      setValid(true)
    
 
     }
@@ -134,6 +152,8 @@ const ProfileForm = ({signup, update}) => {
             <CardBody>
                 <Form className="ItemForm" onSubmit={handleSubmit}>
                     {/* <div className="ItemForm-CardBody-div"> */}
+                    <FormGroup>
+                      {/* <InputGroup> */}
                         <Label htmlFor="username" sm={10}>Username: </Label>
                         { user && (
                         <Input
@@ -169,6 +189,7 @@ const ProfileForm = ({signup, update}) => {
                             onChange={handleChange}
                             placeholder="First Name"
                             required
+                            valid
                         />
                         
            
@@ -181,6 +202,7 @@ const ProfileForm = ({signup, update}) => {
                             onChange={handleChange}
                             placeholder="Last Name"
                             required
+                            valid={valid}
                         />
                 {/* NOTE ISSUE WITH INPUT FOR EMAIL ONLY NOT REACT ISSUE SEEMS TO BE EMAIL ISSUE */}
                          <Label htmlFor="email">Email: </Label>
@@ -188,16 +210,18 @@ const ProfileForm = ({signup, update}) => {
                             type="email"
                             id="email"
                             name="email"
-                            defaultValue={formData.email}
+                            value={formData.email}
                             onChange={handleChange}
                             placeholder="Email"
                             required
+                            valid={valid}
                         />
+                        {/* Note that you had the defaultValue instead of value but nethier is prefilling values  */}
                          {/* <FormFeedback invalid>Password is incorrect.</FormFeedback> */}
                         
-                        { !user && ( <Label>Password:</Label> )}
                         {/* { user && ( <label style={{display: "none"}}>Confirm Password:</label> )} */}
-                        { user && ( <Label>Confirm Password:</Label> )}
+                        {/* { user && ( <Label>Confirm Password:</Label> )} */}
+                        { !user && ( <><Label>Password:</Label> 
                         <Input
                             type="password"
                             name="password"
@@ -207,7 +231,10 @@ const ProfileForm = ({signup, update}) => {
                             placeholder="Password"
                             // style={{display: "none"}}
                             id="passwordInput"
-                        />
+                        /></>
+                        )}
+                    <FormFeedback valid>Profile updated successfully!</FormFeedback>
+                    </FormGroup>
                     <Button >Save Changes</Button>
                 </Form>
             </CardBody>

@@ -161,7 +161,7 @@ function App() {
       <BrowserRouter>
         <UserContext.Provider value={{user, setUser}}>
         {/* <NavBar logout={logout} history={history}/> */}
-        <NavBar logout={logout} user={user} />
+        <NavBar logout={logout} />
         <main>
           <Routes login={login} signup={signup} update={update} />
         </main>

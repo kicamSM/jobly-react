@@ -1,17 +1,25 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { Navbar, Nav, NavItem } from "reactstrap";
 import "./NavBar.css";
 import 'bootstrap/dist/css/bootstrap.css';
+import UserContext from "../UserContext";
 
-function NavBar({logout, user}) {
+function NavBar({logout}) {
   // console.log("user:", user)
   // const { firstName } = user
   // console.log("firstName:", firstName)
+  const { user } = useContext(UserContext);
+  // console.log("user in Navbar:", user)
 
   if(user) {
-   const { firstName } = user
+    // console.log("if statement is running")
+    // console.log("user in if statement:", user)
+    // console.log("user.firstName:", user.firstName)
+   const firstName = user.firstName
+
     // console.log("firstName:", firstName)
+
   }
 
 
@@ -41,7 +49,7 @@ function NavBar({logout, user}) {
               <NavLink to="/profile">Profile</NavLink>
             </NavItem>
             <NavItem className="Navbar-Logout">
-              <Link to="/" onClick={logout}>Logout</Link>
+              <Link to="/" onClick={logout}>Logout {user.firstName}</Link>
             </NavItem>
           ) </>}
 
