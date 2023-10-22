@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 // import './ProfileForm.css'
 import {
     Card,
@@ -30,7 +30,10 @@ const ProfileForm = ({signup, update}) => {
   console.log("setUser!!!:", setUser)
   let INITIAL_STATE; 
   const history = useHistory();
-  const [ valid, setValid ] = useState(false)
+  const [ valid, setValid ] = useState(false);
+  const [ invalid, setInvalid ] = useState(false);
+  // const [toolTip, setToolTip] = useState(false);
+  const [errorMessage, setErrorMessage] = useState([]);
   // const [passwordValid, setPasswordValid] = useState(true);
 //   const history = useHistory()
 //   let name = snacks !== undefined ? "Snack" : "Drink";
@@ -55,6 +58,19 @@ const ProfileForm = ({signup, update}) => {
 //     return { success: false, errors };
 //   }
 // }
+
+// useEffect(() => {
+//   const onLocationChange = () => {
+//     setValid(false);
+//   };
+
+//   history.listen(onLocationChange);
+
+//   // return () => {
+//   //   history.unlisten(onLocationChange);
+//   // };
+//   // return unlisten;
+// }, [history]);
 
 
 
@@ -113,15 +129,23 @@ const ProfileForm = ({signup, update}) => {
       // console.log("no user will need to add singup")
       // console.log("!!!!!!!!!!!!!!formData:", formData)
       let result = await signup(formData);
-      console.log("!!!!!!!user:", user)
+      // console.log("!!!!!!!user:", user)
       if(result.success) {
         history.push("/")
         // setFormData(INITIAL_STATE);
-
+      } else {
+        console.log("RESULT*****", result)
+        let message = result.errors[0]
+        console.log("message:", message)
+        setErrorMessage(message)
+        // setToolTip(true)
+        setInvalid(true)
       }
     }
 
   };
+
+  // console.log("ERROR MESSAGE!!!", errorMessage)
 
   /** Update local state w/curr state of input elem */
 
@@ -162,6 +186,8 @@ const ProfileForm = ({signup, update}) => {
                             value={formData.username}
                             readOnly
                             style={{backgroundColor: "lightGray", color: "black"}}
+                            // tooltip={toolTip}
+                            invalid={invalid}
                         />
                   
                     )}
@@ -174,6 +200,8 @@ const ProfileForm = ({signup, update}) => {
                             onChange={handleChange}
                             placeholder="Username"
                             required
+                            // tooltip={toolTip}
+                            invalid={invalid}
                         />
                   
                     )}
@@ -189,7 +217,9 @@ const ProfileForm = ({signup, update}) => {
                             onChange={handleChange}
                             placeholder="First Name"
                             required
-                            valid
+                            valid={valid}
+                            invalid={invalid}
+                            // tooltip={toolTip}
                         />
                         
            
@@ -203,6 +233,8 @@ const ProfileForm = ({signup, update}) => {
                             placeholder="Last Name"
                             required
                             valid={valid}
+                            invalid={invalid}
+                            // tooltip={toolTip}
                         />
                 {/* NOTE ISSUE WITH INPUT FOR EMAIL ONLY NOT REACT ISSUE SEEMS TO BE EMAIL ISSUE */}
                          <Label htmlFor="email">Email: </Label>
@@ -215,6 +247,9 @@ const ProfileForm = ({signup, update}) => {
                             placeholder="Email"
                             required
                             valid={valid}
+                            // tooltip={toolTip}
+                            
+                            invalid={invalid}
                         />
                         {/* Note that you had the defaultValue instead of value but nethier is prefilling values  */}
                          {/* <FormFeedback invalid>Password is incorrect.</FormFeedback> */}
@@ -231,11 +266,15 @@ const ProfileForm = ({signup, update}) => {
                             placeholder="Password"
                             // style={{display: "none"}}
                             id="passwordInput"
+  
+                            invalid={invalid}
                         /></>
                         )}
                     <FormFeedback valid>Profile updated successfully!</FormFeedback>
+                    <FormFeedback tooltip>{errorMessage} </FormFeedback>
                     </FormGroup>
-                    <Button >Save Changes</Button>
+                    { user && <Button >Save Changes</Button> }
+                    { !user && <Button >Create Profile</Button> }
                 </Form>
             </CardBody>
         </Card>
