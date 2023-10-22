@@ -27,26 +27,32 @@ function NavBar({logout, user}) {
         <NavLink exact to="/" className="navbar-brand">
         </NavLink>
         <Nav className="ml-auto" navbar >
-          <NavItem className="Navbar-Jobly">
-            <NavLink to="/">Jobly</NavLink>
-          </NavItem>
-          <NavItem className="Navbar-Companies">
-            <NavLink to="/companies">Companies</NavLink>
-          </NavItem>
-          <NavItem className="Navbar-Jobs">
-            <NavLink to="/jobs">Jobs</NavLink>
-          </NavItem>
-          <NavItem className="Navbar-Jobs">
-            <NavLink to="/profile">Profile</NavLink>
-          </NavItem>
-          <NavItem className="Navbar-Logout">
-            {/* <button className="nav-link" onClick={logout}>Log out</button> */}
-            {/* <button className="nav-link" onClick={() => {
-                logout();
-                history.push('/login');
-            }}>Log out</button> */}
-            <Link to="/" onClick={logout}>Logout</Link>
-          </NavItem>
+          {user && <> (
+            <NavItem className="Navbar-Jobly">
+              <NavLink to="/">Jobly</NavLink>
+            </NavItem>
+            <NavItem className="Navbar-Companies">
+              <NavLink to="/companies">Companies</NavLink>
+            </NavItem>
+            <NavItem className="Navbar-Jobs">
+              <NavLink to="/jobs">Jobs</NavLink>
+            </NavItem>
+            <NavItem className="Navbar-Jobs">
+              <NavLink to="/profile">Profile</NavLink>
+            </NavItem>
+            <NavItem className="Navbar-Logout">
+              <Link to="/" onClick={logout}>Logout</Link>
+            </NavItem>
+          ) </>}
+
+          { !user && <>(
+              <NavItem className="Navbar-Signup">
+                <NavLink to="/signup">Signup</NavLink>
+              </NavItem>
+              <NavItem className="Navbar-Login">
+                <Link to="/login">Login</Link>
+              </NavItem>
+          )</> }
             {/* <NavItem className="Navbar-Logout">
             <NavLink to="/logout">Log out</NavLink>
             </NavItem> */}

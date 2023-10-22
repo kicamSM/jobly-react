@@ -9,11 +9,14 @@ import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import jwt from "jsonwebtoken";
 import UserContext from "./UserContext";
 
+export const TOKEN_STORAGE_ID = "jobly-token";
 
 function App() {
 
   const [user, setUser] = useState(null);
   const [token, setToken] = useState([]);
+  // const [token, setToken] = useLocalStorage(TOKEN_STORAGE_ID);
+  // ! come back to this useLocalStorage
   const [applicationIds, setApplicationIds] = useState(new Set([]));
   const history = useHistory();
   console.log("history!!!!:", history)
@@ -124,6 +127,17 @@ function App() {
 
   }
 
+  async function update(username, data) {
+    try {
+      let token = await JoblyApi.update(username, data);
+      setToken(token);
+      return { success: true };
+    } catch (errors) {
+      console.error("update failed", errors);
+      return { success: false, errors };
+    }
+  }
+
 console.log("user!!!!:", user)
 
   return (
@@ -133,7 +147,7 @@ console.log("user!!!!:", user)
         {/* <NavBar logout={logout} history={history}/> */}
         <NavBar logout={logout} user={user} />
         <main>
-          <Routes login={login} signup={signup} />
+          <Routes login={login} signup={signup} update={update} />
         </main>
         </UserContext.Provider>
       </BrowserRouter>

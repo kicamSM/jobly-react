@@ -16,8 +16,8 @@ function Home() {
 
   console.log("user in home:". user)
 
-  if(user) {
-    console.log("user exists in home.js!!!:", user)
+  // if(user) {
+    // console.log("user exists in home.js!!!:", user)
     return (
       <section className="col-md-8 Home">
         <Card>
@@ -28,34 +28,42 @@ function Home() {
           </CardTitle>
           <CardBody className="text-center">
             <div>All the jobs in one, convenient place.</div>
-            <h2>Welcome Back</h2>
+            {user && <h2>Welcome Back, {user.firstName}!</h2>}
+            { !user && ( <> <CardText>
+              <Link className="Home-Link" to="/login">Login</Link>
+            </CardText>
+            <CardText>
+              <Link className="Home-Link" to="/signup">Signup</Link>
+            </CardText>
+            </>)}
           </CardBody>
         </Card>
       </section>
-  );
-
-  } else {
-    console.log("user in home.js does not exist:", user)
-    return (
-      <section className="col-md-8 Home">
-      <Card>
-        <CardTitle>
-            <div className="font-weight-bold Home-div">
-              <h1>Jobly</h1>
-            </div>
-        </CardTitle>
-        <CardBody className="text-center">
-          <CardText>
-          <Link className="Home-Link" to="/login">Login</Link>
-          </CardText>
-          <CardText>
-          <Link className="Home-Link" to="/signup">Signup</Link>
-          </CardText>
-        </CardBody>
-      </Card>
-    </section>
     )
-  }
+  // );
+
+  // } else {
+    // console.log("user in home.js does not exist:", user)
+    // return (
+    //   <section className="col-md-8 Home">
+    //   <Card>
+    //     <CardTitle>
+    //         <div className="font-weight-bold Home-div">
+    //           <h1>Jobly</h1>
+    //         </div>
+    //     </CardTitle>
+    //     <CardBody className="text-center">
+    //       <CardText>
+    //       <Link className="Home-Link" to="/login">Login</Link>
+    //       </CardText>
+    //       <CardText>
+    //       <Link className="Home-Link" to="/signup">Signup</Link>
+    //       </CardText>
+    //     </CardBody>
+    //   </Card>
+    // </section>
+  //   )
+  // }
 
 
 }

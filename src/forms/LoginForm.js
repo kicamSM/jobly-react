@@ -42,8 +42,15 @@ const LoginForm = ({login}) => {
     password: 'password',
   });
 
-  const history = useHistory()
-  const [token, setToken] = useLocalStorage();
+  // ! NOTE YOU APPEARED TO HAVE BROKEN THE LOGIN
+
+  const history = useHistory();
+
+  // ! this was there before when get SyntaxError initialValue in useLocalStorage(key )
+  // *this appears to be the line taht was breaking the applicaction. 
+  // todo: need to figure out a way to pass the token in.
+  // const [token, setToken] = useLocalStorage();
+   const [token, setToken] = useState();
 
   // const GetTokenFromLocalStorage = () => {
   
@@ -73,6 +80,7 @@ console.log("history!!!!", history)
     evt.preventDefault();
     // addItem(formData);
     // addItems(formData)
+    console.log("formData in login:", formData)
     login(formData)
     setFormData(INITIAL_STATE);
     

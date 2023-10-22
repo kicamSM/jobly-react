@@ -12,7 +12,7 @@ import CompanyDetail from "./companies/CompanyDetail";
 import JobList from "./jobs/JobList";
 
 
-function Routes({login, signup}) {
+function Routes({login, signup, update}) {
     const [isLoading, setIsLoading] = useState(true);
    
     // const [jobs, setJobs] = useState([]);
@@ -99,7 +99,7 @@ return (
       <CompanyDetail />
     </Route>
     <Route path="/profile">
-      <ProfileForm  />
+      <ProfileForm  update={update}/>
     </Route>
     <Route path="*">
       <NotFound />
