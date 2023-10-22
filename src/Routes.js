@@ -12,7 +12,7 @@ import CompanyDetail from "./companies/CompanyDetail";
 import JobList from "./jobs/JobList";
 
 
-function Routes({login, signup, update}) {
+function Routes({login, signup, update, apply}) {
     const [isLoading, setIsLoading] = useState(true);
    
     // const [jobs, setJobs] = useState([]);
@@ -83,7 +83,7 @@ return (
       {/* <InfoPage companies={companies} /> */}
     </Route>
     <Route exact path="/jobs">
-    <JobList  />
+    <JobList apply={apply} />
       {/* <InfoPage  jobs={jobs}/> */}
     </Route>
     <Route exact path="/login">

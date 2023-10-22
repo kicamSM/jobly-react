@@ -6,7 +6,7 @@ import UserContext from "../UserContext";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 
-function JobList() {
+function JobList({apply}) {
     const [isLoading, setIsLoading] = useState(true);
     const [jobs, setJobs] = useState([]);
     // const [jobs, setJobs] = useState([]);
@@ -43,7 +43,7 @@ function JobList() {
         <div className="JobList">
             <ul>
                 {jobs.map(job => (
-                  <CardComponent job={job} />
+                  <CardComponent job={job} apply={apply} />
                 ))}
             </ul>
           </div>

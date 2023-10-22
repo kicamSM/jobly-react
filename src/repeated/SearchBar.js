@@ -24,7 +24,7 @@ function SearchBar({getCompanies, getJobs}) {
     const [formData, setFormData] = useState(INITIAL_STATE);
 
     let getData = getCompanies !== undefined ? getCompanies : getJobs; 
-    console.log("getData:", getData)
+    // console.log("getData:", getData)
 
   /** Send {searchInput} to backend
        & clear form. */
@@ -36,7 +36,7 @@ function SearchBar({getCompanies, getJobs}) {
     };
 
     const handleChange = evt => {
-        console.log('handleChange is running')
+        // console.log('handleChange is running')
         const { name, value }= evt.target;
     
         setFormData(fData => ({

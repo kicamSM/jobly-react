@@ -122,6 +122,12 @@ class JoblyApi {
     return res.token;
   }
 
+  static async apply(username, id) {
+    let res = await this.request(`users/${username}/jobs/${id}`, id, "post");
+    console.log("res:", res)
+    return res.token
+  }
+
 
 
 

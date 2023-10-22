@@ -156,6 +156,18 @@ function App() {
 
 // console.log("user!!!!:", user)
 
+async function apply(username, id) {
+  try {
+    let token = await JoblyApi.apply(username, id);
+    setToken(token);
+    return { success: true };
+  } catch (errors) {
+    console.error("applied to job failed", errors);
+    return { success: false, errors };
+  }
+}
+
+
   return (
     <div className="App">
       <BrowserRouter>
@@ -163,7 +175,7 @@ function App() {
         {/* <NavBar logout={logout} history={history}/> */}
         <NavBar logout={logout} />
         <main>
-          <Routes login={login} signup={signup} update={update} />
+          <Routes login={login} signup={signup} update={update} apply={apply} />
         </main>
         </UserContext.Provider>
       </BrowserRouter>

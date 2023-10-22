@@ -81,7 +81,7 @@ const ProfileForm = ({signup, update}) => {
     console.log("***user.email***:", user.email)
     INITIAL_STATE = { username: user.username, firstName: user.firstName, lastName: user.lastName, email: user.email };
   } else {
-    INITIAL_STATE = { username: "", firstName: "", lastName: "", email: "" };
+    INITIAL_STATE = { username: "", firstName: "", lastName: "", email: "", applications: [] };
   }
   const [formData, setFormData] = useState(INITIAL_STATE);
 
@@ -111,9 +111,10 @@ const ProfileForm = ({signup, update}) => {
           username: username,
           isAdmin: user.isAdmin,
           firstName: firstName,
-          lastName: lastName
+          lastName: lastName,
+          applications: user.applications
         }
-        console.log("otherInfo:", profileData)
+        console.log("profileData:", profileData)
         setUser(profileData)
         console.log("USER!!!!!:", user)
         setFormData(profileData);
