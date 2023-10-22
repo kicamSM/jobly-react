@@ -1,6 +1,16 @@
-import { Card, CardBody, CardTitle } from "reactstrap";
 import './SearchBar.css'
 import React, {useState, useRef} from 'react'
+import {
+  Card,
+  CardBody,
+  CardTitle,
+  Form,
+  FormGroup,
+  Label, 
+  Input,
+  Col, 
+  Button
+} from "reactstrap";
 
 /**
  * Display search bar
@@ -37,11 +47,10 @@ function SearchBar({getCompanies, getJobs}) {
       };
 
     return (
-        <div>
-            <form className="SearchBar" onSubmit={handleSubmit}>
-                <div>
-                    <label htmlFor="searchInput"> </label>
-                    <input 
+        <div className='SearchBar'>
+            <Form className="SearchBar" onSubmit={handleSubmit}>
+                    <Label For="searchInput" sm={2} className="mb3"> </Label>
+                    <Input 
                         type="text"
                         placeholder="Enter search term..."
                         onChange={handleChange}
@@ -49,9 +58,8 @@ function SearchBar({getCompanies, getJobs}) {
                         id="searchInput"
                         name="searchInput"
                         required />
-                </div>
-                <button>Submit</button>
-            </form>
+                <Button color="primary">Submit</Button>
+            </Form>
         </div>
     );
   }

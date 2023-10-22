@@ -20,6 +20,12 @@ nav {
     text-align: center;
     flex-direction: row;
   } */
+
+    .nav-item {
+    width: 100px;
+    text-align: center;
+    flex-direction: row;
+  }
   
   nav a {
     color: #f0f2f5;
@@ -29,10 +35,23 @@ nav {
   nav a.active {
     color: #f0f2f5;
     font-weight: bold;
+    /* border-bottom: 5px dotted; */
+    box-sizing: border-box;
+  }
+
+  /* .Navbar-Login {
+    color: #f0f2f5;
+    font-weight: bold;
+    box-sizing: border-box;
+  } */
+
+  /* nav link.active {
+    color: #f0f2f5;
+    font-weight: bold;
     border-bottom: 5px dotted;
     box-sizing: border-box;
   }
-  
+   */
   nav a.active:hover {
     color: #f0f2f5 !important;
   }
@@ -50,11 +69,16 @@ nav {
     font-weight: bold;
   }
   
-  /* .Navbar-Jobly {
+ /* nav a.active.Navbar-Jobly {
     background-color: black;
-  }
+    border-bottom: none;
+  } */
 
-  .Navbar-Companies {
+  /* .Navbar-Jobly {
+    margin-right: 50px;
+  } */
+
+  /* .Navbar-Companies {
    margin-left: 80vh;
   }
 
@@ -68,9 +92,9 @@ nav {
 
    .Navbar-Logout {
     margin-left: 80vh;
-   } */
+   }  */
 
-   .Nav {
+   /* .Nav {
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -78,7 +102,7 @@ nav {
 
   .Navbar-Logout {
     background-color: black;
-  }
+  } */
 
   
   /* .Navbar-button {
@@ -87,7 +111,7 @@ nav {
     
   } */
 
-  .Navbar-button {
+  /* .Navbar-button {
     color: inherit;
     text-decoration: none;
     border: none;
@@ -96,4 +120,4 @@ nav {
   
   .Navbar-button:hover {
     background-color: #ccc;
-  }
+  } */

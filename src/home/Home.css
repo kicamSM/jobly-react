@@ -1,12 +1,14 @@
 body {
     background-color: lightblue;
+
 }
 
-/* a {
-    background-color: blue;
-    color: white;
-    text-decoration: none;
-  } */
+.Home {
+    display: flex;
+    justify-content: center;
+    margin: auto;
+    margin-top: 8em;
+}
 
 
 .Home-Link {

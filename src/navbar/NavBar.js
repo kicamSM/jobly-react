@@ -2,7 +2,7 @@ import React from "react";
 import { Link, NavLink } from "react-router-dom";
 import { Navbar, Nav, NavItem } from "reactstrap";
 import "./NavBar.css";
-
+import 'bootstrap/dist/css/bootstrap.css';
 
 function NavBar({logout, user}) {
   console.log("user:", user)
@@ -24,13 +24,13 @@ function NavBar({logout, user}) {
   return (
     <div> 
       <Navbar expand="md">
-        <NavLink exact to="/" className="navbar-brand">
+        <NavLink exact to="/" className="navbar-brand">Jobly
         </NavLink>
         <Nav className="ml-auto" navbar >
           {user && <> (
-            <NavItem className="Navbar-Jobly">
+            {/* <NavItem className="Navbar-Jobly">
               <NavLink to="/">Jobly</NavLink>
-            </NavItem>
+            </NavItem> */}
             <NavItem className="Navbar-Companies">
               <NavLink to="/companies">Companies</NavLink>
             </NavItem>
@@ -45,17 +45,14 @@ function NavBar({logout, user}) {
             </NavItem>
           ) </>}
 
-          { !user && <>(
+          { !user && <>
               <NavItem className="Navbar-Signup">
                 <NavLink to="/signup">Signup</NavLink>
               </NavItem>
               <NavItem className="Navbar-Login">
-                <Link to="/login">Login</Link>
+                <NavLink to="/login"  activeClassName="active">Login</NavLink>
               </NavItem>
-          )</> }
-            {/* <NavItem className="Navbar-Logout">
-            <NavLink to="/logout">Log out</NavLink>
-            </NavItem> */}
+          </> }
         </Nav>
       </Navbar>
     </div>

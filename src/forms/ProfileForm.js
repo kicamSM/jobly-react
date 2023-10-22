@@ -12,7 +12,7 @@ import {
   } from "reactstrap";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import UserContext from "../UserContext";
-// import "ProfileForm.css"
+import "./ProfileForm.css"
 
 /** Form for adding a user or updating a logged in user.
  *
@@ -101,211 +101,105 @@ const ProfileForm = ({signup, update}) => {
 
   /** render form */
 
-//   return (
-//     <section className="col-md-4">
-//         <Card>
-//             <CardTitle className="ItemForm-CardTitle">
-//             { !user && ( <div>Create a Profile</div> )}
-//             { user && (<div>{user.username}'s Profile</div>)}
-//             </CardTitle>
-//             <CardBody>
-//                 <form className="ItemForm" onSubmit={handleSubmit}>
+  return (
+    <section className="col-md-4 ProfileForm">
+        <Card>
+            <CardTitle className="ItemForm-CardTitle">
+            { !user && ( <div>Create a Profile</div> )}
+            { user && (<div>{user.username}'s Profile</div>)}
+            </CardTitle>
+            <CardBody>
+                <form className="ItemForm" onSubmit={handleSubmit}>
                  
-//                     <div className="ItemForm-CardBody-div">
-//                         <label htmlFor="username">Username: </label>
-//                         { user && (
-//                         <input
-//                             id="username"
-//                             name="username"
-//                             value={formData.username}
-//                             readOnly
-//                             style={{backgroundColor: "gray"}}
-//                         />
+                    <div className="ItemForm-CardBody-div">
+                        <label htmlFor="username">Username: </label>
+                        { user && (
+                        <input
+                            id="username"
+                            name="username"
+                            value={formData.username}
+                            readOnly
+                            style={{backgroundColor: "gray"}}
+                        />
                   
-//                     )}
-//                         { !user && (
-//                         <input
-//                             id="username"
-//                             name="username"
-//                             value={formData.username}
-//                             onChange={handleChange}
-//                             placeholder="Username"
-//                             required
-//                         />
+                    )}
+                        { !user && (
+                        <input
+                            id="username"
+                            name="username"
+                            value={formData.username}
+                            onChange={handleChange}
+                            placeholder="Username"
+                            required
+                        />
                   
-//                     )}
-//                       </div>
+                    )}
+                      </div>
 
-//                     <div>
-//                         <label htmlFor="firstName">First Name: </label>
-//                         <input
-//                             type="firstName"
-//                             id="firstName"
-//                             name="firstName"
-//                             value={formData.firstName}
-//                             onChange={handleChange}
-//                             placeholder="First Name"
-//                             required
-//                         />
-//                     </div>
-
-//                     <div>
-//                         <label htmlFor="lastName">Last Name: </label>
-//                         <input
-//                             type="lastName"
-//                             id="lasteName"
-//                             name="lastName"
-//                             value={formData.lastName}
-//                             onChange={handleChange}
-//                             placeholder="Last Name"
-//                             required
-//                         />
-//                     </div>
-
-//                     <div>
-//                         <label htmlFor="email">Email: </label>
-//                         <input
-//                             type="email"
-//                             id="email"
-//                             name="email"
-//                             value={formData.Email}
-//                             onChange={handleChange}
-//                             placeholder="Email"
-//                             required
-//                         />
-//                     </div>
-
-//                     <div className="form-group">
-//                         { !user && ( <label>Password:</label> )}
-//                         {/* { user && ( <label style={{display: "none"}}>Confirm Password:</label> )} */}
-//                         { user && ( <label>Confirm Password:</label> )}
-//                         <input
-//                             type="password"
-//                             name="password"
-//                             className="form-control"
-//                             value={formData.password}
-//                             onChange={handleChange}
-//                             placeholder="Password"
-//                             // style={{display: "none"}}
-//                             id="passwordInput"
-//                         />
-//                       </div>
-
-//                     {/* <button onClick={handleChange}>Save Changes</button> */}
-                    
-//                     <button >Save Changes</button>
-//                 </form>
-//             </CardBody>
-//         </Card>
-//     </section>
-//   );
-// };
-
-return (
-  <section className="col-md-4">
-      <Card>
-          <CardTitle className="ItemForm-CardTitle">
-          { !user && ( <div>Create a Profile</div> )}
-          { user && (<div>{user.username}'s Profile</div>)}
-          </CardTitle>
-          <CardBody>
-              <Form className="ItemForm" onSubmit={handleSubmit}>
-
-                  <FormGroup row>
-                  {/* <div className="ItemForm-CardBody-div"> */}
-                      <Label htmlFor="username"  sm={2}>Username: </Label>
-                      { user && (
-                        <Col sm={10}>
-                      <Input
-                          id="username"
-                          name="username"
-                          value={formData.username}
-                          readOnly
-                          style={{backgroundColor: "gray"}}
-                      />
-                      </Col>
-                
-                  )}
-                  </FormGroup>
-                      { !user && (
-                         <Col sm={10}>
-                      <Input
-                          id="username"
-                          name="username"
-                          value={formData.username}
-                          onChange={handleChange}
-                          placeholder="Username"
-                          required
-                      />
-                    </Col>
-                  )}
-                    {/* </div> */}
-
-                  {/* <div> */}
-                  <FormGroup row>
-                      <Label sm={2} htmlFor="firstName">First Name: </Label>
-                      <Input
-                          type="firstName"
-                          id="firstName"
-                          name="firstName"
-                          value={formData.firstName}
-                          onChange={handleChange}
-                          placeholder="First Name"
-                          required
-                      />
-                  {/* </div> */}
-                  </FormGroup>
-
-                  <div>
-                      <label htmlFor="lastName">Last Name: </label>
-                      <input
-                          type="lastName"
-                          id="lasteName"
-                          name="lastName"
-                          value={formData.lastName}
-                          onChange={handleChange}
-                          placeholder="Last Name"
-                          required
-                      />
-                  </div>
-
-                  <div>
-                      <label htmlFor="email">Email: </label>
-                      <input
-                          type="email"
-                          id="email"
-                          name="email"
-                          value={formData.Email}
-                          onChange={handleChange}
-                          placeholder="Email"
-                          required
-                      />
-                  </div>
-
-                  <div className="form-group">
-                      { !user && ( <label>Password:</label> )}
-                      {/* { user && ( <label style={{display: "none"}}>Confirm Password:</label> )} */}
-                      { user && ( <label>Confirm Password:</label> )}
-                      <input
-                          type="password"
-                          name="password"
-                          className="form-control"
-                          value={formData.password}
-                          onChange={handleChange}
-                          placeholder="Password"
-                          // style={{display: "none"}}
-                          id="passwordInput"
-                      />
+                    <div>
+                        <label htmlFor="firstName">First Name: </label>
+                        <input
+                            type="firstName"
+                            id="firstName"
+                            name="firstName"
+                            value={formData.firstName}
+                            onChange={handleChange}
+                            placeholder="First Name"
+                            required
+                        />
                     </div>
 
-                  {/* <button onClick={handleChange}>Save Changes</button> */}
-                  
-                  <button >Save Changes</button>
-              </Form>
-          </CardBody>
-      </Card>
-  </section>
-);
+                    <div>
+                        <label htmlFor="lastName">Last Name: </label>
+                        <input
+                            type="lastName"
+                            id="lasteName"
+                            name="lastName"
+                            value={formData.lastName}
+                            onChange={handleChange}
+                            placeholder="Last Name"
+                            required
+                        />
+                    </div>
+
+                    <div>
+                        <label htmlFor="email">Email: </label>
+                        <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            value={formData.Email}
+                            onChange={handleChange}
+                            placeholder="Email"
+                            required
+                        />
+                    </div>
+
+                    <div className="form-group">
+                        { !user && ( <label>Password:</label> )}
+                        {/* { user && ( <label style={{display: "none"}}>Confirm Password:</label> )} */}
+                        { user && ( <label>Confirm Password:</label> )}
+                        <input
+                            type="password"
+                            name="password"
+                            className="form-control"
+                            value={formData.password}
+                            onChange={handleChange}
+                            placeholder="Password"
+                            // style={{display: "none"}}
+                            id="passwordInput"
+                        />
+                      </div>
+
+                    {/* <button onClick={handleChange}>Save Changes</button> */}
+                    
+                    <button >Save Changes</button>
+                </form>
+            </CardBody>
+        </Card>
+    </section>
+  );
 };
+
 
 export default ProfileForm;
