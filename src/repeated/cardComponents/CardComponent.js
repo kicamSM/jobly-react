@@ -48,8 +48,7 @@ import {
       if(result.success) {
         setButton("Applied");
         setDisable(true);
-        user.applications.push(job.id)
-        // setIsLoading(false);
+        user.applications.push(job.id);
       } 
 
     }
@@ -60,7 +59,8 @@ import {
           <section key={info.handle}>
             <Card className="CardComponent"> 
               <CardBody>
-                  <NavLink exact to={`/companies/${info.handle}`} className="CompanyCard-Link" >
+                  <NavLink exact to={`/companies/${info.handle}`} className="CompanyCard-Link">
+                  {/* <NavLink exact to={`/companies/${info.handle}`} className="CompanyCard-Link"> */}
                 <CardTitle className="text-center CardComponent-Title">
                   {info.name} 
                 </CardTitle>

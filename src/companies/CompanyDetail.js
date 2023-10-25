@@ -3,7 +3,6 @@ import JoblyApi from "../Api";
 import { useParams} from "react-router-dom";
 import CardComponent from "../repeated/cardComponents/CardComponent";
 
-
 /**  
  * Company detail form
  */
@@ -11,10 +10,13 @@ import CardComponent from "../repeated/cardComponents/CardComponent";
 function CompanyDetail({apply}) {
 
    /** Get url handle and set jobs and is loading in state*/
-
+    // console.log("company:", company)
     const handle = useParams(); 
+    
+    console.log("handle:", handle)
     const [jobs, setJobs ] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
+    const [company, setCompany]= useState("");
 
     //   /** API get request for a company's jobs */
 
@@ -24,10 +26,18 @@ function CompanyDetail({apply}) {
       setIsLoading(false);
     }
 
+  //   /** API get request for a company */ 
+
+    async function getCompany() {
+      let company = await JoblyApi.getCompany(handle.name);
+      setCompany(company);
+    }
+
     /** Reloading company jobs when it changes request for company jobs */
    
     useEffect(() => {
       getCompanyJobs();
+      getCompany();
     }, []);
 
     /** Display isLoading if API call is has not returned */
@@ -54,6 +64,8 @@ function CompanyDetail({apply}) {
 
     return (
       <div className="CompanyDetail">
+        { company && <h3>{company.name}</h3> } 
+        { company && <p>{company.description}</p>}
         {renderCards()}
       </div>
     );

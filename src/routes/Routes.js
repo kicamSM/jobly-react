@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import Home from "../home/Home";
 import { Route, Switch } from "react-router-dom";
 import NotFound from "../404";

@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
 import UserContext from "./UserContext";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 

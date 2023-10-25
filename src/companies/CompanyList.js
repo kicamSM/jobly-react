@@ -14,6 +14,7 @@ function CompanyList() {
 
     const [isLoading, setIsLoading] = useState(true);
     const [companies, setCompanies] = useState([]);
+    
 
   //   /** API get request for companies */
 
@@ -36,7 +37,7 @@ function CompanyList() {
       return <p>Loading...</p>;
     }
 
-     /** Render the cards for companies */
+     /** Renders the cards for companies */
 
     const renderCards = () => {
       return (
@@ -50,7 +51,7 @@ function CompanyList() {
         );
     }
   
-    /** Render search bar and render cards */
+    /** Renders search bar and render cards */
 
     return (
       <div className="CompanyList">

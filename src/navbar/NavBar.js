@@ -20,12 +20,6 @@ function NavBar({logout}) {
 
   const { user } = useContext(UserContext);
 
-     /** If user get first name*/
-  if(user) {
-
-   const firstName = user.firstName
-  }
-
     /** Render nav bar */
 
   return (

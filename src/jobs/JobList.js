@@ -20,7 +20,6 @@ function JobList({apply}) {
     async function getJobs(title) {
       try{
         let jobs = await JoblyApi.getJobs(title);
-        console.log("jobs:", jobs)
         setJobs(jobs);
       } catch (errors) {
       console.log("signup failed", errors);

@@ -23,7 +23,6 @@ function App() {
 
   const [user, setUser] = useState(null);
   const [token, setToken] = useLocalStorage(TOKEN_STORAGE_ID);
-  const [applicationIds, setApplicationIds] = useState(new Set([]));
   const [isLoading, setIsLoading] = useState(true);
 
 
@@ -40,7 +39,6 @@ function App() {
           JoblyApi.token = token;
           let user = await JoblyApi.getUser(username);
           setUser(user);
-          setApplicationIds(new Set(user.applications));
         } catch (err) {
           console.error("App loadUserInfo: problem loading", err);
           setUser(null);

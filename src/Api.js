@@ -41,9 +41,9 @@ class JoblyApi {
   /** Get jobs on a company by handle.  */
 
   static async getCompany(handle) {
-    console.log("getCompany is running in API")
     let res = await this.request(`companies/${handle}`);
     return res.company;
+    
   }
 
  /** Get all companies or companies that match name*/
