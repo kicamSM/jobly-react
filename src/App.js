@@ -1,62 +1,24 @@
 import { BrowserRouter, Redirect } from "react-router-dom";
 import './App.css';
 import NavBar from "./navbar/NavBar";
-import Routes from './Routes';
+import Routes from './routes/Routes';
 import JoblyApi from "./Api";
 import React, { useState, useEffect } from 'react';
 import useLocalStorage from './hooks/useLocalStorage';
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import jwt from "jsonwebtoken";
-import UserContext from "./UserContext";
+import UserContext from "./repeated/UserContext";
 
 export const TOKEN_STORAGE_ID = "jobly-token";
 
 function App() {
 
   const [user, setUser] = useState(null);
-  // const [token, setToken] = useState([]);
   const [token, setToken] = useLocalStorage(TOKEN_STORAGE_ID);
   // ! come back to this useLocalStorage
   const [applicationIds, setApplicationIds] = useState(new Set([]));
   const history = useHistory();
-  // console.log("history!!!!:", history)
 
-// useEffect(() => {
-//   const setTokenToLocalStorage = (token) => {
-//     const stringToken = JSON.stringify(token);
-//     useLocalStorage.setItem('token', stringToken);
-//   };
-//   }, [token]);
-
-//   useEffect(() => {
-//     const setUserToLocalStorage = (token) => {
-//       const stringToken = JSON.stringify(token);
-//       useLocalStorage.setItem('token', stringToken);
-//     };
-//     }, [token]);
-
-
-  // useEffect(() => {
-  //   async function getUser() {
-  //     let user = await JoblyApi.getUser();
-  //     console.log('user in Routes', user)
-  //     setUser(user);
-  //     // setIsLoading(false);
-  //   }
-  //   getUser();
-  // }, []);
-
-  // console.log("user:", user)
-
-  // useEffect(() => {
-  //   async function addUser(userData) {
-  //     let user = await JoblyApi.addUser(userData);
-  //     console.log('user in Routes', user)
-  //     addUser();
-  //     // setIsLoading(false);
-  //   }
-  //   addUser();
-  // }, []);
 
  // Load user info from API. Until a user is logged in and they have a token,
   // this should not run. It only needs to re-run when a user logs out, so

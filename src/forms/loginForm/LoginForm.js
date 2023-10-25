@@ -6,9 +6,9 @@ import {
     CardTitle
   } from "reactstrap";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
-import useLocalStorage from "../hooks/useLocalStorage";
+import useLocalStorage from "../../hooks/useLocalStorage";
 import "./LoginForm.css"
-import UserContext from "../UserContext";
+import UserContext from "../../repeated/UserContext";
 
 /** Form for creating a snack or drink item to add to snacks or drinks.
  *

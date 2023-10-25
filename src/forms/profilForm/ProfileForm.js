@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext, useState } from "react";
 // import './ProfileForm.css'
 import {
     Card,
@@ -9,13 +9,14 @@ import {
     Label, 
     Input,
     Button,
-    FormFeedback,
-    InputGroup
+    FormFeedback
   } from "reactstrap";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
-import UserContext from "../UserContext";
+import UserContext from "../../repeated/UserContext";
 import "./ProfileForm.css"
-import LoginForm from "./LoginForm";
+import useLocalStorage from "../../hooks/useLocalStorage";
+
+ 
 
 /** Form for adding a user or updating a logged in user.
  *
@@ -27,13 +28,13 @@ import LoginForm from "./LoginForm";
 const ProfileForm = ({signup, update}) => {
 
   const { user, setUser } = useContext(UserContext);
-  console.log("setUser!!!:", setUser)
   let INITIAL_STATE; 
   const history = useHistory();
   const [ valid, setValid ] = useState(false);
   const [ invalid, setInvalid ] = useState(false);
-  // const [toolTip, setToolTip] = useState(false);
   const [errorMessage, setErrorMessage] = useState([]);
+
+
   // const [passwordValid, setPasswordValid] = useState(true);
 //   const history = useHistory()
 //   let name = snacks !== undefined ? "Snack" : "Drink";
@@ -77,8 +78,8 @@ const ProfileForm = ({signup, update}) => {
  
   /** Set initial state and the then set the formdata as initial state. */
   if(user) {
-    console.log("***user***:", user)
-    console.log("***user.email***:", user.email)
+    // console.log("***user***:", user)
+    // console.log("***user.email***:", user.email)
     INITIAL_STATE = { username: user.username, firstName: user.firstName, lastName: user.lastName, email: user.email };
   } else {
     INITIAL_STATE = { username: "", firstName: "", lastName: "", email: "" };
@@ -92,12 +93,12 @@ const ProfileForm = ({signup, update}) => {
     evt.preventDefault();   
     setFormData(INITIAL_STATE);
     if(user) {
-      console.log("user in handle submit profile form:", user)
+      // console.log("user in handle submit profile form:", user)
       const username = user.username;
       const email = formData.email; 
       const firstName = formData.firstName
       const lastName = formData.lastName
-      console.log("lastName:", lastName)
+      // console.log("lastName:", lastName)
     
       delete formData.username;
       delete formData.email; 
@@ -105,7 +106,7 @@ const ProfileForm = ({signup, update}) => {
         update(formData, username);
         console.log("formData:", formData)
 
-        console.log("lastName222:", lastName)
+        // console.log("lastName222:", lastName)
         let profileData = {
           email: email, 
           username: username,
@@ -135,9 +136,9 @@ const ProfileForm = ({signup, update}) => {
         history.push("/")
         // setFormData(INITIAL_STATE);
       } else {
-        console.log("RESULT*****", result)
+        // console.log("RESULT*****", result)
         let message = result.errors[0]
-        console.log("message:", message)
+        // console.log("message:", message)
         setErrorMessage(message)
         // setToolTip(true)
         setInvalid(true)
@@ -252,11 +253,6 @@ const ProfileForm = ({signup, update}) => {
                             
                             invalid={invalid}
                         />
-                        {/* Note that you had the defaultValue instead of value but nethier is prefilling values  */}
-                         {/* <FormFeedback invalid>Password is incorrect.</FormFeedback> */}
-                        
-                        {/* { user && ( <label style={{display: "none"}}>Confirm Password:</label> )} */}
-                        {/* { user && ( <Label>Confirm Password:</Label> )} */}
                         { !user && ( <><Label>Password:</Label> 
                         <Input
                             type="password"

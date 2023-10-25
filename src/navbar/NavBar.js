@@ -3,7 +3,7 @@ import { Link, NavLink } from "react-router-dom";
 import { Navbar, Nav, NavItem } from "reactstrap";
 import "./NavBar.css";
 import 'bootstrap/dist/css/bootstrap.css';
-import UserContext from "../UserContext";
+import UserContext from "../repeated/UserContext";
 
 function NavBar({logout}) {
   // console.log("user:", user)

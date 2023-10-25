@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { Card, CardBody, CardText, CardTitle } from "reactstrap";
 import './Home.css'
-import UserContext from "../UserContext";
+import UserContext from "../repeated/UserContext";
 import { Link } from "react-router-dom";
 
 
