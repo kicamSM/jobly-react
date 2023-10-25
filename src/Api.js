@@ -83,6 +83,14 @@ class JoblyApi {
     return res.jobs;
   }
 
+  static async companyJobs(handle) {
+    console.log("handle in api companyJobs:", handle)
+    let res = await this.request(`companies/${handle}`)
+    console.log("res", res)
+    console.log("res.company.jobs", res.company.jobs)
+    return res.company.jobs
+  }
+
   // static async addCompany(job) {
   //   const result = await this.create('')
   // }
@@ -127,6 +135,8 @@ class JoblyApi {
     console.log("res:", res)
     return res.token
   }
+
+
 
 
 

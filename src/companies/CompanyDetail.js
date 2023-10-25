@@ -1,62 +1,84 @@
 import React, { useState, useEffect, useContext } from "react";
 import JoblyApi from "../Api";
 import { useParams} from "react-router-dom";
-import {
-    Card,
-    CardBody,
-    CardTitle,
-    CardText
-  } from "reactstrap";
-  import UserContext from "../UserContext";
-  import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import UserContext from "../UserContext";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import CardComponent from "../repeated/CardComponent";
 
 
 
-function CompanyDetail() {
+function CompanyDetail({apply}) {
     const handle = useParams(); 
-    const [company, setCompany] = useState([]);
     const history = useHistory();
+    const [jobs, setJobs ] = useState([]);
     
     const { user } = useContext(UserContext);
+    // const [appliedJobs, setAppliedJobs] = useState([]);
+    // console.log("USER IN COMPANYDETAILS:", user)
 
-    console.log("handle:", handle.name)
+    // console.log("handle:", handle.name)
+    // let name = handle.name
 
-    useEffect(() => {
-        async function getCompany() {
-            console.log("handle in getCompany:", handle)
-          let company = await JoblyApi.getCompany(handle.name);
-          console.log('company in details', company)
-          setCompany(company);
-          
-          // setIsLoading(false);
-        }
-        getCompany();
-      }, []);
-
-    // return("this is CompanyDetail")
-     if(!user ){
+    if(!user) {
       history.push("/")
-     }
+    }
 
-    // ! This needs to evenutually return the jobs not the company details. 
-    return (
+    // useEffect(() => {
   
-    <section key={company.handle}>
-        {/* { user && ( */}
-      <Card className="CompanyCard"> 
-        <CardBody>
-          <CardTitle className="text-center CompanyCard-Title">
-            {company.name}
-          </CardTitle>
-          <CardText className="CompanyCard-Text">{company.description}</CardText>
-          <img src={company.logoUrl} ></img>
-          {company.logoUrl}
-        </CardBody>
-      </Card>
-        {/* )} */}
+    //   //   /** API get request for a company's jobs */
 
-    </section>
-    )
+    //   async function getCompanyJobs() {
+    //     let jobs = await JoblyApi.companyJobs(handle.name);
+    //     console.log('jobs in companyDetails', jobs)
+    //     setJobs(jobs);
+    //     // setIsLoading(false);
+    //   }
+
+    //   getCompanyJobs();
+    // }, []);
+
+
+    //   /** API get request for a company's jobs */
+
+    async function getCompanyJobs() {
+    let jobs = await JoblyApi.companyJobs(handle.name);
+    console.log('jobs in companyDetails', jobs)
+    setJobs(jobs);
+    // setIsLoading(false);
+  }
+   
+  useEffect(() => {
+    getCompanyJobs();
+  }, []);
+
+  // function handleApply(job) {
+  //   setAppliedJobs([...appliedJobs, job.id]);
+  // }
+
+
+    const renderCards = () => {
+      return (
+        <div className="CompanyDetail-JobList">
+            <ul>
+                {/* {jobs.map(job => (
+                  <CardComponent job={job} apply={apply} isDisabled={appliedJobs.includes(job.id)}
+                  handleApply={handleApply}/>
+                ))} */}
+                 {jobs.map(job => (
+                  <CardComponent job={job} apply={apply} />
+                ))}
+            </ul>
+          </div>
+        );
+    }
+  
+
+    return (
+      <div className="CompanyDetail">
+        {renderCards()}
+      </div>
+    );
+  
 
 }
 

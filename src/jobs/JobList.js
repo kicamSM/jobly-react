@@ -9,13 +9,12 @@ import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 function JobList({apply}) {
     const [isLoading, setIsLoading] = useState(true);
     const [jobs, setJobs] = useState([]);
-    // const [jobs, setJobs] = useState([]);
-    const history = useHistory()
+    const history = useHistory();
     
     const { user } = useContext(UserContext);
 
     if(!user) {
-      history.push("/")
+      history.push("/");
     }
 
   //   /** API get request for jobs */
@@ -27,16 +26,10 @@ function JobList({apply}) {
       // setIsLoading(false);
     }
 
-   /** Reloading companies when it changes request for companies */
+   /** Reloading jobs when it changes request for jobs */
     useEffect(() => {
         getJobs();
     }, []);
-
-
-    // const companyCards = companies.map((company) => {
-    //   const id = uuid();
-    //   return <CompanyCard key={id} company={company} />;
-    // });
 
     const renderCards = () => {
       return (
@@ -54,11 +47,10 @@ function JobList({apply}) {
     return (
       <div className="JobList">
         <SearchBar getJobs={getJobs}/>
-        {/* {companyCards} */}
         {renderCards()}
       </div>
     );
 
 }
 
-export default JobList
+export default JobList;

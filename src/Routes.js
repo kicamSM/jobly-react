@@ -96,7 +96,7 @@ return (
     <Route path="/companies/:name">
         {/* will display details of company */}
       
-      <CompanyDetail />
+      <CompanyDetail apply={apply}/>
     </Route>
     <Route path="/profile">
       <ProfileForm  update={update}/>
