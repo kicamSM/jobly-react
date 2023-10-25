@@ -9,15 +9,13 @@ import CompanyDetail from "../companies/CompanyDetail";
 import JobList from "../jobs/JobList";
 import Redirect from "../repeated/Redirect";
 
+/**
+ * Display routes
+ */
 
 function Routes({login, signup, update, apply}) {
-    const [isLoading, setIsLoading] = useState(true);
-   
-
-
-    // if (isLoading) {
-    //     return <p>Loading...</p>;
-    //   }
+ 
+/** Render routes */
 
 return (
     <Switch>

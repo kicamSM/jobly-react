@@ -10,38 +10,51 @@ import {
   import { NavLink } from "react-router-dom";
   import UserContext from "../UserContext";
 
+  
+  /**  
+  * Card component for jobs, companies, and company jobs. 
+  */
 
   function CardComponent({company, job, apply}) {
+
+    /** Get user from context, set button, and disable in state, and determine if dealing with company or job*/
+
     const [ button, setButton ] = useState("Apply");
     const [ disable, setDisable ] = useState(false);
     let info = company !== undefined ? company : job;
     const { user } = useContext(UserContext);  
+    
+
+    
+    /** Reloading jobs when it changes request for users applications */
 
     useEffect(() => {
+
       if(job) {
-      // console.log("job****!!!:", job)
-      console.log("user.applications in useEffect:", user.applications)
-      const isApplied = user.applications.includes(job.id);
-      setButton(isApplied ? "Applied" : "Apply");
-      // console.log("button!!!!:", button)
-      // console.log("isApplied:", isApplied)
-      setDisable(isApplied);
+        const isApplied = user.applications.includes(job.id);
+        setButton(isApplied ? "Applied" : "Apply");
+        setDisable(isApplied);
       }
     }, [user.applications]);
 
+
+    /** Handle click of button  */
+
     async function handleClick(e) {
       e.preventDefault(); 
+
       let result = await apply(user.username, job.id); 
+
       if(result.success) {
         setButton("Applied");
         setDisable(true);
-        // console.log("user in handleClick:", user)
-        // console.log("user.applications in handle click:", user.applications)
-        // ! this is adding the job.id to the user in localStorage vs recalling the user from the API but since you already made the api call the application is showing
         user.applications.push(job.id)
-      }
+        // setIsLoading(false);
+      } 
 
     }
+
+     /** Render the card component */
       
       return (
           <section key={info.handle}>
@@ -61,7 +74,7 @@ import {
                 <CardText className="CardComponent-Text">
                 {info.salary && `salary: ${info.salary}`}{" "}
                 </CardText>
-                   {job && <Button className={`CardComponent-Button`}onClick={handleClick} disabled={disable}>{button}</Button>}
+                  {job && <Button className={`CardComponent-Button`}onClick={handleClick} disabled={disable}>{button}</Button>}
               </CardBody>
             </Card>
           </section>

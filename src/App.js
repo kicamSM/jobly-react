@@ -1,71 +1,61 @@
-import { BrowserRouter, Redirect } from "react-router-dom";
-import './App.css';
+import React, { useState, useEffect } from 'react';
+import { BrowserRouter } from "react-router-dom";
 import NavBar from "./navbar/NavBar";
 import Routes from './routes/Routes';
-import JoblyApi from "./Api";
-import React, { useState, useEffect } from 'react';
-import useLocalStorage from './hooks/useLocalStorage';
-import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
-import jwt from "jsonwebtoken";
 import UserContext from "./repeated/UserContext";
+import JoblyApi from "./Api";
+import './App.css';
+import useLocalStorage from './hooks/useLocalStorage';
+import jwt from "jsonwebtoken";
+
 
 export const TOKEN_STORAGE_ID = "jobly-token";
 
+
+  /**  
+  * App
+  */
+
 function App() {
+
+   /** Set user and application ids in state, set token in local storage, and set history*/
+
 
   const [user, setUser] = useState(null);
   const [token, setToken] = useLocalStorage(TOKEN_STORAGE_ID);
-  // ! come back to this useLocalStorage
   const [applicationIds, setApplicationIds] = useState(new Set([]));
-  const history = useHistory();
+  const [isLoading, setIsLoading] = useState(true);
 
-
- // Load user info from API. Until a user is logged in and they have a token,
-  // this should not run. It only needs to re-run when a user logs out, so
-  // the value of the token is a dependency for this effect.
 
   useEffect(function loadUser() {
     console.debug("App useEffect loadUserInfo", "token=", token);
 
+    /** If token then API get request for user using username after decoding token if value of token changes rerun. */
+
     async function getUser() {
-      // console.log("App get user is running")
-      // console.log("token:", token)
       if (token) {
-        //   console.log("token:", token)
-        // console.log("GET USER IS RUNNNING ")
+
         try {
-          console.log("try is runnning")
           let { username } = jwt.decode(token);
-          // put the token on the Api class so it can use it to call the API.
-          // console.log("username:", username)
           JoblyApi.token = token;
           let user = await JoblyApi.getUser(username);
-          // console.log("&&&&&&&&user:", user)
-          // console.log("user.firstName:", user.firstName)
           setUser(user);
-          // console.log("user in get user is there:", user)
           setApplicationIds(new Set(user.applications));
         } catch (err) {
           console.error("App loadUserInfo: problem loading", err);
           setUser(null);
         }
       }
-      // setInfoLoaded(true);
+      setIsLoading(false);
       console.log("setinfoloaded true")
     }
-
-    // set infoLoaded to false while async getCurrentUser runs; once the
-    // data is fetched (or even if an error happens!), this will be set back
-    // to false to control the spinner.
-    // setInfoLoaded(false);
-    console.log("setinfoloaded false")
     getUser();
   }, [token]);
 
+  /** API post request for user signup or return error */
+
   async function signup(userData) {
-    // console.log("token:", token)
     try {
-    // console.log("userData:", userData)
     let token = await JoblyApi.signup(userData); 
     setToken(token);
     return { success: true};
@@ -74,6 +64,8 @@ function App() {
       return {success: false, errors};
     }
   }
+
+  /** API post request for user login or return error */
 
   async function login(loginData) {
     try {
@@ -86,24 +78,14 @@ function App() {
     }
   }
 
+  /** Logout - clear token and user */
+
   function logout() {
-    // try {
-
-      console.log("token in logout before setting token:", token)
       setToken(null);
-      console.log("token in logout after setting token:", token)
       setUser(null);
-      // history.push('/login');
-      // redirect()
-      // return <Redirect to="/login" />;
-      // return { success: true };
-      // return <Navigate to="/login" replace={true} />;
-    // } catch (errors) {
-    //   console.error("logout failed", errors);
-    //   return { success: false, errors };
-    // }
-
   }
+
+  /** API patch request for user update or return error */
 
   async function update(username, data) {
     try {
@@ -116,7 +98,7 @@ function App() {
     }
   }
 
-// console.log("user!!!!:", user)
+  /** API post request for job application or return error */
 
 async function apply(username, id) {
   try {
@@ -129,16 +111,22 @@ async function apply(username, id) {
   }
 }
 
+  /** Display isLoading if API call is has not returned */
+
+  if (isLoading) {
+    return <p>Loading...</p>;
+  }
+
+  /** Render App */
 
   return (
     <div className="App">
       <BrowserRouter>
         <UserContext.Provider value={{user, setUser}}>
-        {/* <NavBar logout={logout} history={history}/> */}
-        <NavBar logout={logout} />
-        <main>
-          <Routes login={login} signup={signup} update={update} apply={apply} />
-        </main>
+          <NavBar logout={logout} />
+          <main>
+            <Routes login={login} signup={signup} update={update} apply={apply} />
+          </main>
         </UserContext.Provider>
       </BrowserRouter>
     </div>

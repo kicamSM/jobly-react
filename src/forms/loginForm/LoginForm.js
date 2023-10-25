@@ -1,110 +1,56 @@
-import React, { useState, useContext } from "react";
-// import './LoginForm.css'
+import React, { useState } from "react";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import "./LoginForm.css";
 import {
     Card,
     CardBody,
-    CardTitle
+    CardTitle,
+    Form, 
+    FormGroup,
+    Label,
+    Input, 
+    Button,
+    FormFeedback
   } from "reactstrap";
-import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
-import useLocalStorage from "../../hooks/useLocalStorage";
-import "./LoginForm.css"
-import UserContext from "../../repeated/UserContext";
 
-/** Form for creating a snack or drink item to add to snacks or drinks.
- *
- * Has state for the name, description, recipe, serve of the item; on submission,
- * sends {name, description, recipe, serve, id } to fn rec'd from parent.
+
+/** 
+ * Login form 
  *
  */
 
 const LoginForm = ({login}) => {
     
-//   const history = useHistory()
-//   let name = snacks !== undefined ? "Snack" : "Drink";
-//   let addItem = snacks !== undefined  ? addSnack : addDrink
-//   let addItems = snacks !== undefined ? addSnacks: addDrinks
-
-//   /** Redirect to snacks or drinks page after submitting form */
-
-//   const redirect = () => {
-//     let url = name.toLocaleLowerCase() + 's';
-//     history.push(`/${url}`);
-//   };
+   /** Set form data, history, valid, and errorMessage in State */
  
-//   /** Set initial state and the then set the formdata as initial state. */
-  const { user } = useContext(UserContext);
-  const INITIAL_STATE = { username: "", password: "" };
-
-  // *This will be my formData when finished 
-  // const [formData, setFormData] = useState(INITIAL_STATE);
-
-  // *Form data set for testing application
-  const [formData, setFormData] = useState({
-    username: 'testuser',
-    password: 'password',
-  });
-
-  // ! NOTE YOU APPEARED TO HAVE BROKEN THE LOGIN
-
+  const [formData, setFormData] = useState({ username: "", password: "" });
   const history = useHistory();
+  const [ invalid, setInvalid ] = useState(false);
+  const [errorMessage, setErrorMessage] = useState([]);
 
-  // ! this was there before when get SyntaxError initialValue in useLocalStorage(key )
-  // *this appears to be the line taht was breaking the applicaction. 
-  // todo: need to figure out a way to pass the token in.
-  // const [token, setToken] = useLocalStorage();
-   const [token, setToken] = useState();
 
-  // const GetTokenFromLocalStorage = () => {
-  
-  //   const getToken = () => {
-  //     const token = localStorage.getItem("token");
-  //     if (token) {
-  //       setToken(token);
-  //     } else {
-  //       setToken(null);
-  //     }
-  //   };
-  // }
-
-//   /** Send {id, name, drescription, recipe, serve} to parent
-//    *    & clear form. */
-
-// console.log("history!!!!", history)
-  /** Redirect to home page after submitting form */
-
-  // console.log("user in Loginform:", user)
-  // const redirect = () => {
-  //   console.log("token:", token)
-  //   console.log("user in login:", user)
-  //   if(token) {
-  //     history.push('/');
-  //   } else {
-  //     console.log("user does not exist in login form")
-  //   }
-
-  // };
+  /** Handle submit by either logging and redirecting in or returning an error message */
 
   const  handleSubmit = async evt => {
     evt.preventDefault();
-  
-    // console.log("formData in login:", formData)
     let result = await login(formData); 
-    // console.log("~!!!!!!!!!!!!!!1result:", result)
-    // console.log("~!!!!!!!!!!!!!!1result.success:", result.success)
+    
     if(result.success) {
-      console.log("result success is true")
-      history.push("/")
-      setFormData(INITIAL_STATE);
-    }
-    // redirect()
+      history.push("/");
+
+    } else {
+      let message = result.errors[0]
+      setErrorMessage(message);
+      setInvalid(true);
+  }
+
   };
 
-  /** Update local state w/curr state of input elem */
+  /** Update local state with current state of input element */
 
   const handleChange = evt => {
-    console.log('handleChange is running')
-    const { name, value }= evt.target;
 
+    const { name, value }= evt.target;
     setFormData(fData => ({
       ...fData,
       [name]: value,
@@ -117,26 +63,26 @@ const LoginForm = ({login}) => {
   return (
     <section className="col-md-4 LoginForm">
         <Card>
-            <CardTitle className="ItemForm-CardTitle">
-                <div>Log In</div>
+            <CardTitle className="LoginForm-CardTitle">
+                <h1>Log In</h1>
             </CardTitle>
             <CardBody>
-                <form className="ItemForm" onSubmit={handleSubmit}>
-                    <div className="ItemForm-CardBody-div">
-                        <label htmlFor="username">Username: </label>
-                        <input
+                <Form onSubmit={handleSubmit}>
+                  <FormGroup>
+
+                        <Label htmlFor="username" sm={10}>Username: </Label>
+                        <Input
                             id="username"
                             name="username"
                             value={formData.username}
                             onChange={handleChange}
                             placeholder="Username"
                             required
+                            invalid={invalid}
                         />
-                    </div>
 
-                    <div>
-                        <label htmlFor="password">Password: </label>
-                        <input
+                        <Label htmlFor="password">Password: </Label>
+                        <Input
                             type="password"
                             id="password"
                             name="password"
@@ -144,11 +90,16 @@ const LoginForm = ({login}) => {
                             onChange={handleChange}
                             placeholder="Password"
                             required
+                            invalid={invalid}
                         />
-                    </div>
 
-                    <button >Submit</button>
-                </form>
+                    <FormFeedback tooltip>{errorMessage} </FormFeedback>
+
+                    </FormGroup>
+  
+                    <Button>Submit</Button>
+
+                </Form>
             </CardBody>
         </Card>
     </section>

@@ -1,33 +1,32 @@
 import React, { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
-import { Navbar, Nav, NavItem } from "reactstrap";
-import "./NavBar.css";
 import 'bootstrap/dist/css/bootstrap.css';
+import "./NavBar.css";
 import UserContext from "../repeated/UserContext";
+import { 
+  Navbar, 
+  Nav, 
+  NavItem 
+} from "reactstrap";
+
+/**
+ * Display nav bar
+ *
+ */
 
 function NavBar({logout}) {
-  // console.log("user:", user)
-  // const { firstName } = user
-  // console.log("firstName:", firstName)
+
+   /** Get user from context*/
+
   const { user } = useContext(UserContext);
-  // console.log("user in Navbar:", user)
 
+     /** If user get first name*/
   if(user) {
-    // console.log("if statement is running")
-    // console.log("user in if statement:", user)
-    // console.log("user.firstName:", user.firstName)
+
    const firstName = user.firstName
-
-    // console.log("firstName:", firstName)
-
   }
 
-
-  // console.log("user in nav", user.firstName)
-  // !taking break will have to come back to getting user information out
-  // !also note prefilling login page would be a good idea
-
-// todo: insert name into logout. 
+    /** Render nav bar */
 
   return (
     <div> 
@@ -36,9 +35,6 @@ function NavBar({logout}) {
         </NavLink>
         <Nav className="ml-auto" navbar >
           {user && <> (
-            {/* <NavItem className="Navbar-Jobly">
-              <NavLink to="/">Jobly</NavLink>
-            </NavItem> */}
             <NavItem className="Navbar-Companies">
               <NavLink to="/companies">Companies</NavLink>
             </NavItem>

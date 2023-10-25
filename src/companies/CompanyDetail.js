@@ -4,25 +4,39 @@ import { useParams} from "react-router-dom";
 import CardComponent from "../repeated/cardComponents/CardComponent";
 
 
+/**  
+ * Company detail form
+ */
 
 function CompanyDetail({apply}) {
 
+   /** Get url handle and set jobs and is loading in state*/
+
     const handle = useParams(); 
     const [jobs, setJobs ] = useState([]);
-
+    const [isLoading, setIsLoading] = useState(true);
 
     //   /** API get request for a company's jobs */
 
     async function getCompanyJobs() {
-    let jobs = await JoblyApi.companyJobs(handle.name);
-    console.log('jobs in companyDetails', jobs)
-    setJobs(jobs);
-    // setIsLoading(false);
-  }
+      let jobs = await JoblyApi.companyJobs(handle.name);
+      setJobs(jobs);
+      setIsLoading(false);
+    }
+
+    /** Reloading company jobs when it changes request for company jobs */
    
-  useEffect(() => {
-    getCompanyJobs();
-  }, []);
+    useEffect(() => {
+      getCompanyJobs();
+    }, []);
+
+    /** Display isLoading if API call is has not returned */
+
+    if (isLoading) {
+      return <p>Loading...</p>;
+    }
+
+    /** Return the cards for company jobs */
 
     const renderCards = () => {
       return (
@@ -35,7 +49,8 @@ function CompanyDetail({apply}) {
           </div>
         );
     }
-  
+
+    /** Render cards */
 
     return (
       <div className="CompanyDetail">

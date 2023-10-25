@@ -1,26 +1,42 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect } from "react";
 import JoblyApi from "../Api";
 import CardComponent from "../repeated/cardComponents/CardComponent";
 import SearchBar from "../repeated/searchBar/SearchBar";
 
 
+/**
+ * Display companies page
+ */
 
 function CompanyList() {
+
+   /** Set companies and is loading in state*/
+
     const [isLoading, setIsLoading] = useState(true);
     const [companies, setCompanies] = useState([]);
 
   //   /** API get request for companies */
+
     async function getCompanies(name) {
       let companies = await JoblyApi.getCompanies(name);
-      // console.log('companies in Routes', companies)
       setCompanies(companies);
-      // setIsLoading(false);
+      setIsLoading(false);
     }
 
    /** Reloading companies when it changes request for companies */
+
     useEffect(() => {
     getCompanies();
   }, []);
+
+
+    /** Display isLoading if API call is has not returned */
+
+    if (isLoading) {
+      return <p>Loading...</p>;
+    }
+
+     /** Render the cards for companies */
 
     const renderCards = () => {
       return (
@@ -34,6 +50,7 @@ function CompanyList() {
         );
     }
   
+    /** Render search bar and render cards */
 
     return (
       <div className="CompanyList">

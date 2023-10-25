@@ -1,33 +1,25 @@
 import './SearchBar.css'
-import React, {useState, useRef} from 'react'
+import React, { useState } from 'react'
 import {
-  Card,
-  CardBody,
-  CardTitle,
   Form,
-  FormGroup,
   Label, 
   Input,
-  Col, 
   Button
 } from "reactstrap";
 
 /**
  * Display search bar
- *
  */
 
 function SearchBar({getCompanies, getJobs}) {
-    // console.log("search:", search)
-    const [searchInput, setSearchInput] = useState("");
+
+    /** Set initial state, set for data as initial state in state, and determine if dealing with companies or jobs*/
+  
     const INITIAL_STATE = { searchInput: "" };
     const [formData, setFormData] = useState(INITIAL_STATE);
-
     let getData = getCompanies !== undefined ? getCompanies : getJobs; 
-    // console.log("getData:", getData)
 
-  /** Send {searchInput} to backend
-       & clear form. */
+    /** Handle submit, get API result for companies or jobs, set formData to initial state*/
   
     const handleSubmit = evt => {
       evt.preventDefault();
@@ -35,16 +27,18 @@ function SearchBar({getCompanies, getJobs}) {
       setFormData(INITIAL_STATE);
     };
 
+    /** Update local state with current state of input element */
+
     const handleChange = evt => {
-        // console.log('handleChange is running')
         const { name, value }= evt.target;
-    
         setFormData(fData => ({
           ...fData,
           [name]: value,
         }));
         
       };
+
+    /** Render search bar */
 
     return (
         <div className='SearchBar'>
