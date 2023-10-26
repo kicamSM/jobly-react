@@ -18,7 +18,7 @@
 <br />
 <p align="center">
   <a href="https://github.com/kicamSM/jobly-react">
-    <img src="https://raw.githubusercontent.com/kicamSM/jobly-react/master/src/app/image/background.jpg" alt="background" width="160" height="160">
+    <img src="https://raw.githubusercontent.com/kicamSM/jobly-react/master/src/app/image/background.jpg" alt="background" height="160">
   </a>
 
   <h2 align="center" style="text-decoration: underline;">Jobly</h2>
