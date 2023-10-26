@@ -50,7 +50,7 @@ function JobList({apply}) {
         <div className="JobList">
             <ul>
                 {jobs.map(job => (
-                  <CardComponent job={job} apply={apply} key={job.id} />
+                  <CardComponent job={job} apply={apply} key={"Job-" + job.id} />
                 ))}
             </ul>
           </div>

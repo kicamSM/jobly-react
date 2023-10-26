@@ -1,4 +1,6 @@
 import React, { useState, useContext, useEffect } from "react";
+import { NavLink } from "react-router-dom";
+  import UserContext from "../UserContext";
 import "./CardComponent.css";
 import {
     Card,
@@ -7,8 +9,7 @@ import {
     CardText,
     Button
   } from "reactstrap";
-  import { NavLink } from "react-router-dom";
-  import UserContext from "../UserContext";
+  
 
   
   /**  
@@ -23,8 +24,10 @@ import {
     const [ disable, setDisable ] = useState(false);
     let info = company !== undefined ? company : job;
     let key = company !== undefined ? info.handle : info.id;
-    console.log("INFO:", info)
-    console.log("key:", key)
+
+    // let id = "Card-Component-";
+    // let key = id + keyInfo;
+  
     const { user } = useContext(UserContext);  
     
 
@@ -57,11 +60,9 @@ import {
     }
 
      /** Render the card component */
-
-    //  !Come back to the key 
       
       return (
-          <section key={key}>
+          <section key={"Card-Component-" + key}>
             <Card className="CardComponent"> 
               <CardBody>
                   <NavLink exact to={`/companies/${info.handle}`} className="CompanyCard-Link">
@@ -70,19 +71,22 @@ import {
                 </CardTitle>
                   </NavLink>
                  <CardTitle> 
-                 {info.title}
+                 <h4>{info.title}</h4>
                  </CardTitle>
                 <CardText className="CardComponent-Text">
-                  {info.description} {info.equity && `equity: ${info.equity} `}
+                  {info.description}
                 </CardText>
                 <img className="CardComponent-Text" src={info.logoUrl}></img>
                 <CardText className="CardComponent-Text">
-                {info.salary && `salary: ${info.salary}`}{" "}
+                {info.equity && `equity: ${info.equity} `}
+                </CardText>
+                <CardText className="CardComponent-Text">
+                {info.salary && `salary: ${info.salary}`}
                 </CardText>
                   {job && <Button className={`CardComponent-Button`}onClick={handleClick} disabled={disable}>{button}</Button>}
               </CardBody>
             </Card>
-          </section>
+         </section>
         );
   }
   

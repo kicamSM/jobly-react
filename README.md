@@ -18,9 +18,7 @@
 <br />
 <p align="center">
   <a href="https://github.com/kicamSM/jobly-react">
-    <img src="/react-jobly/frontend/src/app/image/background.jpg" alt="background" width="160" height="160">
-
-    <!-- src="https://raw.githubusercontent.com/kicamSM/Board_Game_Mania/master/static/Meeple_Image.png" -->
+    <img src="https://raw.githubusercontent.com/kicamSM/jobly-react/master/src/app/image/background.jpg" alt="background" width="160" height="160">
   </a>
 
   <h2 align="center" style="text-decoration: underline;">Jobly</h2>
@@ -150,9 +148,9 @@ Contributions are what make the open source community such an amazing place to b
 
 ## Project In Action 
 
-<!-- [https://board-game-mania.onrender.com](https://board-game-mania.onrender.com) -->
+<!-- [https://jobly-react.onrender.com](https://jobly-react-mania.onrender.com) -->
 
-<!-- ! need to change this -->
+<!-- ! Will need to update this after deployed. -->
 
 <!-- CONTACT -->
 ## Contact

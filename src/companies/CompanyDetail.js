@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import JoblyApi from "../Api";
 import { useParams} from "react-router-dom";
 import CardComponent from "../repeated/cardComponents/CardComponent";
-import Loading from "../repeated/loading/Loading"
+import Loading from "../repeated/loading/Loading";
 
 /**  
  * Company detail form
@@ -13,8 +13,6 @@ function CompanyDetail({apply}) {
    /** Get url handle and set jobs and is loading in state*/
     // console.log("company:", company)
     const handle = useParams(); 
-    
-    console.log("handle:", handle)
     const [jobs, setJobs ] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const [company, setCompany]= useState("");
@@ -56,7 +54,7 @@ function CompanyDetail({apply}) {
         <div className="CompanyDetail-JobList">
             <ul>
                  {jobs.map(job => (
-                  <CardComponent job={job} apply={apply} />
+                  <CardComponent job={job} apply={apply} key={"Company-Detail-" + job.id} />
                 ))}
             </ul>
           </div>
@@ -68,7 +66,7 @@ function CompanyDetail({apply}) {
     return (
       <div className="CompanyDetail">
         { company && <h3>{company.name}</h3> } 
-        { company && <p>{company.description}</p>}
+        { company && <h4>{company.description}</h4>}
         {renderCards()}
       </div>
     );
