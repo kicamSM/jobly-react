@@ -24,7 +24,7 @@
   <h2 align="center" style="text-decoration: underline;">Jobly</h2>
 
   <p align="center">
-    Simple job application with the ability apply for jobs.
+    Simple job application with the ability to apply for jobs.
   </p>
 </p>
 
