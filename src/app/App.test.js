@@ -1,9 +1,21 @@
+import React from 'react';
 import { render, screen } from '@testing-library/react';
 import App from './App';
+import { toMatchSnapshot } from 'jest-snapshot'
 
-test('renders learn react link', () => {
+expect.extend({ toMatchSnapshot });
+
+test('App renders without crashing', () => {
   render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+});
+
+// test('matches snapshot', () => {
+//   const {asFragment} = render(<App />);
+//   expect(asFragment()).toMatchSnapShot(); 
+// })
+
+it('matches snapshot', () => {
+  const {asFragment} = render(<App />);
+  expect(asFragment()).toMatchSnapShot(); 
 });
 
