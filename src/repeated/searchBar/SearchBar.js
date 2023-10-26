@@ -43,7 +43,7 @@ function SearchBar({getCompanies, getJobs}) {
     return (
         <div className='SearchBar'>
             <Form className="SearchBar" onSubmit={handleSubmit}>
-                    <Label For="searchInput" sm={2} className="mb3"> </Label>
+                    <Label htmlFor="searchInput" sm={2} className="mb3"> </Label>
                     <Input 
                         type="text"
                         placeholder="Enter search term..."

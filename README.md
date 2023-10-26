@@ -19,6 +19,8 @@
 <p align="center">
   <a href="https://github.com/kicamSM/jobly-react">
     <img src="/react-jobly/frontend/src/app/image/background.jpg" alt="background" width="160" height="160">
+
+    <!-- src="https://raw.githubusercontent.com/kicamSM/Board_Game_Mania/master/static/Meeple_Image.png" -->
   </a>
 
   <h2 align="center" style="text-decoration: underline;">Jobly</h2>
@@ -145,22 +147,12 @@ Contributions are what make the open source community such an amazing place to b
 5. Push to the Branch (`git push origin feature/AmazingFeature`)
 6. Open a Pull Request
 
-### Cloning / Development setup
-***
-1. Clone the repo and install
-    ```sh
-    git clone https://github.com/kicamSM/Board_Game_Mania
-    cd Board_Game_Mania
-    pip install -r requirements.txt
-    ```
-2. Run tests
-    ```sh
-    python -m coverage run -m unittest discover -s tests
-    ```
 
 ## Project In Action 
 
-[https://board-game-mania.onrender.com](https://board-game-mania.onrender.com)
+<!-- [https://board-game-mania.onrender.com](https://board-game-mania.onrender.com) -->
+
+<!-- ! need to change this -->
 
 <!-- CONTACT -->
 ## Contact
@@ -168,7 +160,7 @@ Contributions are what make the open source community such an amazing place to b
 
 Sophia Macik - kicamSMM@gmail.com
 
-Project Link: [https://github.com/kicamSM/Board_Game_Mania](https://github.com/kicamSM/Board_Game_Mania)
+Project Link: [https://github.com/kicamSM/jobly-react](https://github.com/kicamSM/jobly-react)
 
 
 

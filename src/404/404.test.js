@@ -1,9 +1,6 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import NotFound from './404'
-import { toMatchSnapshot } from 'jest-snapshot'
-
-expect.extend({ toMatchSnapshot });
+import NotFound from './404';
 
 test('404 renders without crashing', () => {
   render(<NotFound />);
@@ -25,4 +22,4 @@ test('Should display "404"', () => {
 test('matches snapshot', () => {
     const {asFragment} = render(<NotFound />);
     expect(asFragment()).toMatchSnapshot(); 
-  })
+  });

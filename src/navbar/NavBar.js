@@ -28,7 +28,7 @@ function NavBar({logout}) {
         <NavLink exact to="/" className="navbar-brand">Jobly
         </NavLink>
         <Nav className="ml-auto" navbar >
-          {user && <> (
+          {user && <> 
             <NavItem className="Navbar-Companies">
               <NavLink to="/companies">Companies</NavLink>
             </NavItem>
@@ -41,7 +41,7 @@ function NavBar({logout}) {
             <NavItem className="Navbar-Logout">
               <Link to="/" onClick={logout}>Logout {user.firstName}</Link>
             </NavItem>
-          ) </>}
+           </>}
 
           { !user && <>
               <NavItem className="Navbar-Signup">

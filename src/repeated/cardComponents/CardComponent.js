@@ -22,6 +22,9 @@ import {
     const [ button, setButton ] = useState("Apply");
     const [ disable, setDisable ] = useState(false);
     let info = company !== undefined ? company : job;
+    let key = company !== undefined ? info.handle : info.id;
+    console.log("INFO:", info)
+    console.log("key:", key)
     const { user } = useContext(UserContext);  
     
 
@@ -54,23 +57,25 @@ import {
     }
 
      /** Render the card component */
+
+    //  !Come back to the key 
       
       return (
-          <section key={info.handle}>
+          <section key={key}>
             <Card className="CardComponent"> 
               <CardBody>
                   <NavLink exact to={`/companies/${info.handle}`} className="CompanyCard-Link">
-                  {/* <NavLink exact to={`/companies/${info.handle}`} className="CompanyCard-Link"> */}
                 <CardTitle className="text-center CardComponent-Title">
                   {info.name} 
                 </CardTitle>
-                 </NavLink>
+                  </NavLink>
                  <CardTitle> 
                  {info.title}
                  </CardTitle>
                 <CardText className="CardComponent-Text">
                   {info.description} {info.equity && `equity: ${info.equity} `}
                 </CardText>
+                <img className="CardComponent-Text" src={info.logoUrl}></img>
                 <CardText className="CardComponent-Text">
                 {info.salary && `salary: ${info.salary}`}{" "}
                 </CardText>

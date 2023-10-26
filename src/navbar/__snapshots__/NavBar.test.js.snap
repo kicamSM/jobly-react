@@ -1,0 +1,172 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches snapshot when logged in 1`] = `
+<DocumentFragment>
+  <div>
+    <nav
+      class="navbar navbar-expand-md"
+    >
+      <div
+        class="container-fluid"
+      >
+        <a
+          class="navbar-brand"
+          href="/"
+        >
+          Jobly
+        </a>
+        <ul
+          class="ml-auto navbar-nav"
+        >
+           (
+          <li
+            class="Navbar-Companies nav-item"
+          >
+            <a
+              href="/companies"
+            >
+              Companies
+            </a>
+          </li>
+          <li
+            class="Navbar-Jobs nav-item"
+          >
+            <a
+              href="/jobs"
+            >
+              Jobs
+            </a>
+          </li>
+          <li
+            class="Navbar-Jobs nav-item"
+          >
+            <a
+              href="/profile"
+            >
+              Profile
+            </a>
+          </li>
+          <li
+            class="Navbar-Logout nav-item"
+          >
+            <a
+              href="/"
+            >
+              Logout testfirst
+            </a>
+          </li>
+          ) 
+        </ul>
+      </div>
+    </nav>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`matches snapshot when logged out 1`] = `
+<DocumentFragment>
+  <div>
+    <nav
+      class="navbar navbar-expand-md"
+    >
+      <div
+        class="container-fluid"
+      >
+        <a
+          class="navbar-brand"
+          href="/"
+        >
+          Jobly
+        </a>
+        <ul
+          class="ml-auto navbar-nav"
+        >
+          <li
+            class="Navbar-Signup nav-item"
+          >
+            <a
+              aria-current="page"
+              class="active"
+              href="/signup"
+            >
+              Signup
+            </a>
+          </li>
+          <li
+            class="Navbar-Login nav-item"
+          >
+            <a
+              href="/login"
+            >
+              Login
+            </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`matches snapshot when logged out 2`] = `
+<DocumentFragment>
+  <div>
+    <nav
+      class="navbar navbar-expand-md"
+    >
+      <div
+        class="container-fluid"
+      >
+        <a
+          class="navbar-brand"
+          href="/"
+        >
+          Jobly
+        </a>
+        <ul
+          class="ml-auto navbar-nav"
+        >
+           (
+          <li
+            class="Navbar-Companies nav-item"
+          >
+            <a
+              href="/companies"
+            >
+              Companies
+            </a>
+          </li>
+          <li
+            class="Navbar-Jobs nav-item"
+          >
+            <a
+              href="/jobs"
+            >
+              Jobs
+            </a>
+          </li>
+          <li
+            class="Navbar-Jobs nav-item"
+          >
+            <a
+              href="/profile"
+            >
+              Profile
+            </a>
+          </li>
+          <li
+            class="Navbar-Logout nav-item"
+          >
+            <a
+              href="/"
+            >
+              Logout testfirst
+            </a>
+          </li>
+          ) 
+        </ul>
+      </div>
+    </nav>
+  </div>
+</DocumentFragment>
+`;

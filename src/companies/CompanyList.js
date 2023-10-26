@@ -44,10 +44,10 @@ function CompanyList() {
 
     const renderCards = () => {
       return (
-        <div className="CompanyList">
+        <div className="CompanyList" >
             <ul>
                 {companies.map(company => (
-                  <CardComponent company={company} />
+                  <CardComponent company={company} key={company.handle}/>
                 ))}
             </ul>
           </div>
