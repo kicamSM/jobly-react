@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import JoblyApi from "../Api";
 import CardComponent from "../repeated/cardComponents/CardComponent";
 import SearchBar from "../repeated/searchBar/SearchBar";
-
+import Loading from "../repeated/loading/Loading"
 
 /**
  * Display jobs page
@@ -35,10 +35,12 @@ function JobList({apply}) {
     }, []);
 
 
-  /** Display isLoading if API call is has not returned */
+  /** Display loading if API call is has not returned */
 
     if (isLoading) {
-      return <p>Loading...</p>;
+      return (
+          <Loading />
+      )
     }
 
   /** Render the cards for jobs */

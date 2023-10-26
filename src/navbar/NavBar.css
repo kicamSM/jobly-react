@@ -1,5 +1,5 @@
 nav {
-    background-color: black;
+    background-color: #f0f2f5;
     box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 3px 1px -2px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2);
     height: 70px;
   }
@@ -11,22 +11,22 @@ nav {
   }
   
   nav a {
-    color: #f0f2f5;
+    color: rgb(120, 11, 120);
     text-decoration: none;
   }
   
   nav a.active {
-    color: #f0f2f5;
+    color: rgb(120, 11, 120);
     font-weight: bold;
   }
 
   nav a.active:hover {
-    color: #f0f2f5 !important;
+    color: rgb(120, 11, 120);
   }
   
   nav a:hover {
     text-decoration: none;
-    color: #f0f2f5;
+    color: rgb(120, 11, 120);
   }
   
   nav a.active.navbar-brand {

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import JoblyApi from "../Api";
 import { useParams} from "react-router-dom";
 import CardComponent from "../repeated/cardComponents/CardComponent";
+import Loading from "../repeated/loading/Loading"
 
 /**  
  * Company detail form
@@ -43,7 +44,9 @@ function CompanyDetail({apply}) {
     /** Display isLoading if API call is has not returned */
 
     if (isLoading) {
-      return <p>Loading...</p>;
+      return (
+          <Loading />
+      )
     }
 
     /** Return the cards for company jobs */

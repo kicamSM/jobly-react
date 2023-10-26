@@ -1,16 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter } from "react-router-dom";
-import NavBar from "./navbar/NavBar";
-import Routes from './routes/Routes';
-import UserContext from "./repeated/UserContext";
-import JoblyApi from "./Api";
+import NavBar from "../navbar/NavBar";
+import Routes from "../routes/Routes";
+import UserContext from "../repeated/UserContext";
+import JoblyApi from "../Api";
+import Loading from "../repeated/loading/Loading"
 import './App.css';
-import useLocalStorage from './hooks/useLocalStorage';
+import useLocalStorage from "../hooks/useLocalStorage";
 import jwt from "jsonwebtoken";
 
-
 export const TOKEN_STORAGE_ID = "jobly-token";
-
 
   /**  
   * App
@@ -112,7 +111,9 @@ async function apply(username, id) {
   /** Display isLoading if API call is has not returned */
 
   if (isLoading) {
-    return <p>Loading...</p>;
+    return (
+        <Loading />
+    )
   }
 
   /** Render App */

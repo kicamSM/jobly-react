@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import JoblyApi from "../Api";
 import CardComponent from "../repeated/cardComponents/CardComponent";
 import SearchBar from "../repeated/searchBar/SearchBar";
+import Loading from "../repeated/loading/Loading"
 
 
 /**
@@ -34,7 +35,9 @@ function CompanyList() {
     /** Display isLoading if API call is has not returned */
 
     if (isLoading) {
-      return <p>Loading...</p>;
+      return (
+          <Loading />
+      )
     }
 
      /** Renders the cards for companies */

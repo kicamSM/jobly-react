@@ -1,9 +1,9 @@
 import React from "react";
 import Home from "../home/Home";
 import { Route, Switch } from "react-router-dom";
-import NotFound from "../404";
+import NotFound from "../404/404";
 import LoginForm from "../forms/loginForm/LoginForm";
-import ProfileForm from "../forms/profilForm/ProfileForm"
+import ProfileForm from "../forms/profileForm/ProfileForm";
 import CompanyList from "../companies/CompanyList";
 import CompanyDetail from "../companies/CompanyDetail";
 import JobList from "../jobs/JobList";
