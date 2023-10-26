@@ -1,0 +1,100 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="App"
+  >
+    <div>
+      <nav
+        class="navbar navbar-expand-md"
+      >
+        <div
+          class="container-fluid"
+        >
+          <a
+            aria-current="page"
+            class="navbar-brand active"
+            href="/"
+          >
+            Jobly
+          </a>
+          <ul
+            class="ml-auto navbar-nav"
+          >
+            <li
+              class="Navbar-Signup nav-item"
+            >
+              <a
+                href="/signup"
+              >
+                Signup
+              </a>
+            </li>
+            <li
+              class="Navbar-Login nav-item"
+            >
+              <a
+                href="/login"
+              >
+                Login
+              </a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+    <main>
+      <section
+        class="col-md-8 Home"
+      >
+        <div
+          class="card"
+        >
+          <div
+            class="card-title"
+          >
+            <h1>
+              Jobly
+            </h1>
+          </div>
+          <div
+            class="card-body"
+          >
+            <p
+              class="card-text"
+            >
+              All the jobs in one, convenient place.
+            </p>
+             
+            <p
+              class="card-text"
+            >
+              <a
+                class="Home-Link"
+                href="/login"
+              >
+                <button
+                  class="btn btn-secondary"
+                >
+                  Login
+                </button>
+              </a>
+              <a
+                class="Home-Link"
+                href="/signup"
+              >
+                <button
+                  class="btn btn-secondary"
+                >
+                  Signup
+                </button>
+              </a>
+            </p>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+</DocumentFragment>
+`;
