@@ -148,7 +148,7 @@ Contributions are what make the open source community such an amazing place to b
 
 ## Project In Action 
 
-[https://silent-space.surge.sh](https://https://silent-space.surge.sh/)
+[https://silent-space.surge.sh](https://silent-space.surge.sh/)
 
 
 <!-- CONTACT -->
