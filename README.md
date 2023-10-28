@@ -148,9 +148,8 @@ Contributions are what make the open source community such an amazing place to b
 
 ## Project In Action 
 
-<!-- [https://jobly-react.onrender.com](https://jobly-react-mania.onrender.com) -->
+[https://silent-space.surge.sh](https://https://silent-space.surge.sh/)
 
-<!-- ! Will need to update this after deployed. -->
 
 <!-- CONTACT -->
 ## Contact
